@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FútbolStats - Acerca del Proyecto</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/common.js"></script>
+</head>
+<body class="h-full bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased transition-colors duration-200">
+
+    <!-- Backdrop móvil -->
+    <div id="sidebarBackdrop" class="fixed inset-0 z-40 bg-slate-900/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-200 lg:hidden"></div>
+
+    <div class="min-h-full flex">
+        <!-- SIDEBAR -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col justify-between transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+            <div>
+                <!-- Brand / Logo -->
+                <div class="h-16 flex items-center justify-between px-6 border-b border-slate-200 dark:border-slate-800">
+                    <a href="index.html" class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center text-white shadow-md shadow-emerald-500/20">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="font-bold text-lg tracking-tight block leading-tight">FútbolStats</span>
+                            <span class="text-[11px] font-medium text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Liga & Torneo</span>
+                        </div>
+                    </a>
+                    <button id="sidebarCloseBtn" class="lg:hidden p-1.5 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-white rounded-lg">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Navigation Links -->
+                <nav class="p-4 space-y-1.5">
+                    <a href="index.html" data-nav-link class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                        <svg class="w-5 h-5 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        </svg>
+                        <span>Inicio</span>
+                    </a>
+                    <a href="dashboard.html" data-nav-link class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                        <svg class="w-5 h-5 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="registro.html" data-nav-link class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                        <svg class="w-5 h-5 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                        </svg>
+                        <span>Registro de Partidos</span>
+                    </a>
+                    <a href="tabla.html" data-nav-link class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                        <svg class="w-5 h-5 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <span>Tabla de Posiciones</span>
+                    </a>
+                    <a href="acerca.html" data-nav-link class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                        <svg class="w-5 h-5 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Acerca de</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Sidebar Footer -->
+            <div class="p-4 border-t border-slate-200 dark:border-slate-800">
+                <div class="bg-slate-100 dark:bg-slate-800/60 rounded-xl p-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Spring Boot API</span>
+                        <span class="text-[10px] bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-400 font-bold px-2 py-0.5 rounded-full">v1.0</span>
+                    </div>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">MySQL + JPA Hibernate</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN LAYOUT WRAPPER -->
+        <div class="flex-1 flex flex-col min-w-0 lg:pl-64">
+            <!-- HEADER -->
+            <header class="sticky top-0 z-30 h-16 bg-white/80 dark:bg-slate-900/80 backdrop-blur border-b border-slate-200 dark:border-slate-800 px-4 md:px-8 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <button id="sidebarOpenBtn" class="lg:hidden p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                    <div>
+                        <h1 class="text-base md:text-lg font-bold text-slate-900 dark:text-white leading-none">Acerca del Sistema</h1>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Información técnica y arquitectura del proyecto</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-medium">
+                        <span id="apiStatusDot" class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
+                        <span id="apiStatusText" class="text-slate-600 dark:text-slate-300">Conectando...</span>
+                    </div>
+
+                    <button onclick="toggleTheme()" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 transition" title="Alternar Modo Oscuro/Claro">
+                        <svg class="w-5 h-5 icon-sun hidden text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                        <svg class="w-5 h-5 icon-moon text-slate-600 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- MAIN CONTENT -->
+            <main class="flex-1 p-4 md:p-8 max-w-7xl mx-auto w-full space-y-8">
+                <!-- RESUMEN DEL PROYECTO -->
+                <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 md:p-8 space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 text-xs font-bold uppercase tracking-wider">
+                        Proyecto Práctico Spring Boot
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white">
+                        FútbolStats: Sistema de Registro y Tabla de Posiciones
+                    </h2>
+                    <p class="text-sm md:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl">
+                        Este proyecto reorienta una práctica inicial de CRUD hacia un sistema completo de gestión de encuentros de fútbol y generación dinámica de tablas de clasificación oficial. Cuenta con persistencia relacional en MySQL, cálculo inteligente en la capa de negocio y un frontend desacoplado servido estáticamente.
+                    </p>
+                </div>
+
+                <!-- STACK TECNOLÓGICO -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <span>🛠️</span> Stack Tecnológico
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Backend -->
+                        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold">
+                                ☕
+                            </div>
+                            <h4 class="font-bold text-sm text-slate-900 dark:text-white">Backend (Java & Spring)</h4>
+                            <ul class="text-xs text-slate-500 dark:text-slate-400 space-y-1.5">
+                                <li>• <strong>Java 21 LTS</strong> (JDK moderno)</li>
+                                <li>• <strong>Spring Boot 4.x</strong> (Spring Web MVC)</li>
+                                <li>• <strong>Spring Data JPA</strong> con Hibernate</li>
+                                <li>• <strong>Lombok</strong> para código limpio</li>
+                                <li>• <strong>CORS habilitado</strong> para clientes externos</li>
+                            </ul>
+                        </div>
+
+                        <!-- Database -->
+                        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+                            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold">
+                                🐬
+                            </div>
+                            <h4 class="font-bold text-sm text-slate-900 dark:text-white">Persistencia Relacional</h4>
+                            <ul class="text-xs text-slate-500 dark:text-slate-400 space-y-1.5">
+                                <li>• <strong>MySQL Server</strong> en <code class="bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">localhost:3306</code></li>
+                                <li>• Base de datos: <code class="bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">sistema</code></li>
+                                <li>• Tabla: <code class="bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">partidos</code> con AUTO_INCREMENT</li>
+                                <li>• Estrategia DDL: <code class="bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded">update</code> automático</li>
+                            </ul>
+                        </div>
+
+                        <!-- Frontend -->
+                        <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+                            <div class="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center font-bold">
+                                🎨
+                            </div>
+                            <h4 class="font-bold text-sm text-slate-900 dark:text-white">Frontend & UI</h4>
+                            <ul class="text-xs text-slate-500 dark:text-slate-400 space-y-1.5">
+                                <li>• <strong>Tailwind CSS</strong> vía CDN con Dark Mode por clase</li>
+                                <li>• <strong>JavaScript Vanilla (ES6+)</strong> nativo con Fetch API</li>
+                                <li>• Notificaciones Toasts interactivas</li>
+                                <li>• Drawer responsive para dispositivos móviles</li>
+                                <li>• Servido como recursos estáticos desde Spring Boot</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ARQUITECTURA DE SOFTWARE -->
+                <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 md:p-8 space-y-4">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <span>🏛️</span> Arquitectura en Capas
+                    </h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                        El proyecto sigue estrictamente el principio de responsabilidad única dividiendo el flujo en 4 capas dentro del paquete <code class="font-bold text-emerald-600 dark:text-emerald-400">com.sistemas.ejemplo</code>:
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+                            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 block mb-1">1. Entidad JPA</span>
+                            <h5 class="font-semibold text-sm text-slate-900 dark:text-white">Partido.java</h5>
+                            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Mapea la tabla con campos de equipos, goles, jornada y fecha.</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+                            <span class="text-xs font-bold text-blue-600 dark:text-blue-400 block mb-1">2. Repositorio</span>
+                            <h5 class="font-semibold text-sm text-slate-900 dark:text-white">PartidoRepositorio.java</h5>
+                            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Hereda JpaRepository y añade ordenamiento por jornada y fecha.</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+                            <span class="text-xs font-bold text-amber-600 dark:text-amber-400 block mb-1">3. Servicio</span>
+                            <h5 class="font-semibold text-sm text-slate-900 dark:text-white">PartidoServicio.java</h5>
+                            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Lógica CRUD y algoritmo de cálculo de estadísticas (EquipoStats).</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+                            <span class="text-xs font-bold text-purple-600 dark:text-purple-400 block mb-1">4. Controlador REST</span>
+                            <h5 class="font-semibold text-sm text-slate-900 dark:text-white">PartidoControlador.java</h5>
+                            <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Expone endpoints JSON con respuestas HTTP y CORS abierto.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DOCUMENTACIÓN DE ENDPOINTS -->
+                <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                    <div class="p-6 border-b border-slate-200 dark:border-slate-800">
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <span>📡</span> Catálogo de Endpoints REST
+                        </h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Rutas disponibles en la API para consumo de clientes</p>
+                    </div>
+                    <div class="divide-y divide-slate-100 dark:divide-slate-800">
+                        <div class="p-4 md:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-black bg-emerald-100 text-emerald-700 dark:bg-emerald-950/80 dark:text-emerald-400">POST</span>
+                                <code class="text-sm font-semibold text-slate-800 dark:text-slate-200">/api/partidos</code>
+                            </div>
+                            <span class="text-xs text-slate-500 dark:text-slate-400">Registra un nuevo partido en la base de datos</span>
+                        </div>
+                        <div class="p-4 md:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-black bg-blue-100 text-blue-700 dark:bg-blue-950/80 dark:text-blue-400">GET</span>
+                                <code class="text-sm font-semibold text-slate-800 dark:text-slate-200">/api/partidos</code>
+                            </div>
+                            <span class="text-xs text-slate-500 dark:text-slate-400">Lista todos los partidos ordenados por jornada y fecha</span>
+                        </div>
+                        <div class="p-4 md:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-black bg-blue-100 text-blue-700 dark:bg-blue-950/80 dark:text-blue-400">GET</span>
+                                <code class="text-sm font-semibold text-slate-800 dark:text-slate-200">/api/partidos/{id}</code>
+                            </div>
+                            <span class="text-xs text-slate-500 dark:text-slate-400">Obtiene los detalles de un encuentro específico</span>
+                        </div>
+                        <div class="p-4 md:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-black bg-amber-100 text-amber-700 dark:bg-amber-950/80 dark:text-amber-400">PUT</span>
+                                <code class="text-sm font-semibold text-slate-800 dark:text-slate-200">/api/partidos/{id}</code>
+                            </div>
+                            <span class="text-xs text-slate-500 dark:text-slate-400">Actualiza los datos o marcador de un partido existente</span>
+                        </div>
+                        <div class="p-4 md:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-black bg-rose-100 text-rose-700 dark:bg-rose-950/80 dark:text-rose-400">DELETE</span>
+                                <code class="text-sm font-semibold text-slate-800 dark:text-slate-200">/api/partidos/{id}</code>
+                            </div>
+                            <span class="text-xs text-slate-500 dark:text-slate-400">Elimina un partido por su ID</span>
+                        </div>
+                        <div class="p-4 md:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2.5 py-1 rounded-lg text-xs font-black bg-purple-100 text-purple-700 dark:bg-purple-950/80 dark:text-purple-400">GET</span>
+                                <code class="text-sm font-semibold text-slate-800 dark:text-slate-200">/api/tabla-posiciones</code>
+                            </div>
+                            <span class="text-xs text-slate-500 dark:text-slate-400">Calcula y devuelve la clasificación general en tiempo real</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- FOOTER -->
+            <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 py-6 px-4 md:px-8 text-center text-xs text-slate-500 dark:text-slate-400">
+                FútbolStats © 2026 - Desarrollado con Spring Boot 4 + MySQL + JPA + Tailwind CSS.
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
