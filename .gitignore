@@ -1,24 +1,17 @@
-# ==========================================
-# Java & Maven
-# ==========================================
-target/
-*.class
+# ==============================================================
+# .gitignore para Proyecto de Microservicios Spring Boot (Liga 1)
+# ==============================================================
 
-# Package Files
+# Compilados y binarios de Java
+*.class
 *.jar
 *.war
-*.nar
 *.ear
-*.zip
-*.tar.gz
-*.rar
+*.nar
 
-# Maven Wrapper JAR (el properties sí se incluye en el repo)
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-
-# Maven release & temporary files
+# Directorios de compilación de Maven (en raíz y en todos los submódulos)
+target/
+**/target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -28,86 +21,57 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
+**/.mvn/wrapper/maven-wrapper.jar
 
-# ==========================================
-# Logs & Crash Dumps
-# ==========================================
+# Gradle (en caso de uso futuro)
+.gradle
+build/
+**/build/
+
+# Archivos de registro (Logs)
 *.log
+*.log.*
 logs/
-hs_err_pid*
-replay_pid*
+**/logs/
 
-# ==========================================
-# Eclipse & Spring Tool Suite (STS)
-# ==========================================
-.classpath
-.project
-.settings/
-.factorypath
-.apt_generated/
-.apt_generated_tests/
-.springBeans
-.sts4-cache/
-
-# ==========================================
-# IntelliJ IDEA
-# ==========================================
+# IDE: IntelliJ IDEA
 .idea/
 *.iws
 *.iml
 *.ipr
 out/
+**/out/
 
-# ==========================================
-# Visual Studio Code
-# ==========================================
+# IDE: Eclipse / Spring Tool Suite (STS)
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+
+# IDE: Visual Studio Code
 .vscode/
-*.code-workspace
-.history/
 
-# ==========================================
-# NetBeans
-# ==========================================
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+# IDE: NetBeans
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
 
-# ==========================================
-# Sistema Operativo (Windows / macOS / Linux)
-# ==========================================
-# Windows
-Thumbs.db
-Thumbs.db:encryptable
-ehthumbs.db
-ehthumbs_vista.db
-[Dd]esktop.ini
-$RECYCLE.BIN/
-
-# macOS
+# Archivos temporales del Sistema Operativo
 .DS_Store
-.AppleDouble
-.LSOverride
+.DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
 
-# Linux
-*~
-
-# ==========================================
-# Archivos de Entorno y Temporales
-# ==========================================
-*.env
-*.env.local
-*.tmp
-*.bak
-
-# Credenciales locales de Spring Boot
-**/src/main/resources/application-local.properties
-# Si prefieres no subir application.properties y usar solo el .example, descomenta la siguiente linea:
-# **/src/main/resources/application.properties
+# Variables de entorno y credenciales locales
+.env
+.env.local
+*.secret

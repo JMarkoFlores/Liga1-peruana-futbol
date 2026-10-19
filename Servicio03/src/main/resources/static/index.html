@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FútbolStats - Sistema de Gestión de Torneos</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/common.js"></script>
+</head>
+<body class="h-full bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased transition-colors duration-200">
+
+    <!-- Backdrop móvil -->
+    <div id="sidebarBackdrop" class="fixed inset-0 z-40 bg-slate-900/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-200 lg:hidden"></div>
+
+    <div class="min-h-full flex">
+        <!-- SIDEBAR -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col justify-between transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+            <div>
+                <!-- Brand / Logo -->
+                <div class="h-16 flex items-center justify-between px-6 border-b border-slate-200 dark:border-slate-800">
+                    <a href="index.html" class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center text-white shadow-md shadow-emerald-500/20">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="font-bold text-lg tracking-tight block leading-tight">FútbolStats</span>
+                            <span class="text-[11px] font-medium text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Liga & Torneo</span>
+                        </div>
+                    </a>
+                    <button id="sidebarCloseBtn" class="lg:hidden p-1.5 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-white rounded-lg">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Navigation Links -->
+                <nav class="p-4 space-y-1.5">
+                    <a href="index.html" data-nav-link class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                        <svg class="w-5 h-5 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        </svg>
+                        <span>Inicio</span>
+                    </a>
+                    <a href="dashboard.html" data-nav-link class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                        <svg class="w-5 h-5 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="equipos.html" data-nav-link class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                        <svg class="w-5 h-5 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        <span>Registro de Equipos</span>
+                    </a>
+                    <a href="registro.html" data-nav-link class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                        <svg class="w-5 h-5 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                        </svg>
+                        <span>Registro de Partidos</span>
+                    </a>
+                    <a href="tabla.html" data-nav-link class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                        <svg class="w-5 h-5 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <span>Tabla de Posiciones</span>
+                    </a>
+                    <a href="acerca.html" data-nav-link class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                        <svg class="w-5 h-5 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Acerca de</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Sidebar Footer info -->
+            <div class="p-4 border-t border-slate-200 dark:border-slate-800">
+                <div class="bg-slate-100 dark:bg-slate-800/60 rounded-xl p-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Microservicio 03</span>
+                        <span class="text-[10px] bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-400 font-bold px-2 py-0.5 rounded-full">:8763</span>
+                    </div>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Inicio, Dashboard & Tabla</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN LAYOUT WRAPPER -->
+        <div class="flex-1 flex flex-col min-w-0 lg:pl-64">
+            <!-- TOP HEADER -->
+            <header class="sticky top-0 z-30 h-16 bg-white/80 dark:bg-slate-900/80 backdrop-blur border-b border-slate-200 dark:border-slate-800 px-4 md:px-8 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <button id="sidebarOpenBtn" class="lg:hidden p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                    <div>
+                        <h1 class="text-base md:text-lg font-bold text-slate-900 dark:text-white leading-none">Módulo de Inicio</h1>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Bienvenido a FútbolStats - Microservicios & Gateway</p>
+                    </div>
+                </div>
+
+                <!-- Right Header Actions -->
+                <div class="flex items-center gap-3">
+                    <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-medium">
+                        <span id="apiStatusDot" class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
+                        <span id="apiStatusText" class="text-slate-600 dark:text-slate-300">Conectando...</span>
+                    </div>
+
+                    <button onclick="toggleTheme()" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 transition" title="Alternar Modo Oscuro/Claro">
+                        <svg class="w-5 h-5 icon-sun hidden text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                        <svg class="w-5 h-5 icon-moon text-slate-600 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- PAGE CONTENT -->
+            <main class="flex-1 p-4 md:p-8 max-w-7xl mx-auto w-full space-y-8">
+                <!-- HERO SECTION -->
+                <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-600 via-teal-700 to-slate-900 p-8 md:p-12 text-white shadow-xl shadow-emerald-950/10">
+                    <div class="relative z-10 max-w-3xl space-y-4">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur border border-white/20 text-xs font-semibold uppercase tracking-wider text-emerald-200">
+                            ⚽ Arquitectura de Microservicios (Eureka + Gateway + 3 Servicios)
+                        </div>
+                        <h2 class="text-3xl md:text-5xl font-black tracking-tight leading-tight">
+                            Registro de Partidos & Clasificación en Tiempo Real
+                        </h2>
+                        <p class="text-emerald-100 text-sm md:text-base leading-relaxed">
+                            Plataforma integral distribuida para la administración de clubes de fútbol, registro de encuentros con dropdowns inteligentes y cálculo dinámico de estadísticas oficiales.
+                        </p>
+                        <div class="flex flex-wrap gap-3 pt-2">
+                            <a href="equipos.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-emerald-900 font-bold text-sm shadow-md hover:bg-emerald-50 transition transform active:scale-95">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                Registrar Equipos (S01)
+                            </a>
+                            <a href="registro.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-800/80 hover:bg-emerald-800 text-white border border-emerald-500/30 font-semibold text-sm transition">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                </svg>
+                                Registrar Partidos (S02)
+                            </a>
+                            <a href="dashboard.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900/60 hover:bg-slate-900 text-white border border-white/10 font-semibold text-sm transition">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10" />
+                                </svg>
+                                Ver Dashboard (S03)
+                            </a>
+                            <a href="tabla.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900/60 hover:bg-slate-900 text-white border border-white/10 font-semibold text-sm transition">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18" />
+                                </svg>
+                                Tabla de Posiciones (S03)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARDS DE MICROSERVICIOS -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Servicio 01 -->
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                            </div>
+                            <span class="text-xs font-black bg-emerald-100 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400 px-2.5 py-1 rounded-full">Servicio01 :8761</span>
+                        </div>
+                        <h3 class="font-bold text-base text-slate-900 dark:text-white">Registro de Equipos</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                            Administra los clubes del campeonato (nombre, ciudad, estadio). Alimenta dinámicamente los dropdowns de selección en partidos.
+                        </p>
+                        <a href="equipos.html" class="mt-4 inline-flex items-center text-xs font-bold text-emerald-600 dark:text-emerald-400 hover:underline">
+                            Ir al módulo de equipos →
+                        </a>
+                    </div>
+
+                    <!-- Servicio 02 -->
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                            </div>
+                            <span class="text-xs font-black bg-blue-100 text-blue-700 dark:bg-blue-950/60 dark:text-blue-400 px-2.5 py-1 rounded-full">Servicio02 :8762</span>
+                        </div>
+                        <h3 class="font-bold text-base text-slate-900 dark:text-white">Registro de Partidos</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                            Crea, actualiza y elimina partidos con dropdowns desplegables de equipos registrados, control de jornada, fecha y goles.
+                        </p>
+                        <a href="registro.html" class="mt-4 inline-flex items-center text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline">
+                            Ir al módulo de partidos →
+                        </a>
+                    </div>
+
+                    <!-- Servicio 03 -->
+                    <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <span class="text-xs font-black bg-purple-100 text-purple-700 dark:bg-purple-950/60 dark:text-purple-400 px-2.5 py-1 rounded-full">Servicio03 :8763</span>
+                        </div>
+                        <h3 class="font-bold text-base text-slate-900 dark:text-white">Dashboard & Clasificación</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                            Cálculo de clasificación en vivo (3 pts victoria, 1 pt empate), podio, KPIs de goles y resumen integral del torneo.
+                        </p>
+                        <a href="tabla.html" class="mt-4 inline-flex items-center text-xs font-bold text-purple-600 dark:text-purple-400 hover:underline">
+                            Ir a la tabla de posiciones →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PASOS DE USO RÁPIDO -->
+                <div class="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Flujo de Trabajo del Torneo</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center flex-shrink-0 text-sm shadow">1</div>
+                            <div>
+                                <h4 class="font-semibold text-sm text-slate-900 dark:text-white">Registra los Equipos (S01)</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Ingresa los clubes participantes en <a href="equipos.html" class="text-emerald-600 dark:text-emerald-400 underline font-medium">Registro de Equipos</a>.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center flex-shrink-0 text-sm shadow">2</div>
+                            <div>
+                                <h4 class="font-semibold text-sm text-slate-900 dark:text-white">Registra los Encuentros (S02)</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Selecciona los equipos desde el dropdown en <a href="registro.html" class="text-blue-600 dark:text-blue-400 underline font-medium">Registro de Partidos</a>.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center flex-shrink-0 text-sm shadow">3</div>
+                            <div>
+                                <h4 class="font-semibold text-sm text-slate-900 dark:text-white">Revisa la Tabla & Métricas (S03)</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Visualiza los puntos y el podio en la <a href="tabla.html" class="text-purple-600 dark:text-purple-400 underline font-medium">Tabla de Posiciones</a> y el <a href="dashboard.html" class="text-purple-600 dark:text-purple-400 underline font-medium">Dashboard</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- FOOTER -->
+            <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 py-6 px-4 md:px-8 text-center text-xs text-slate-500 dark:text-slate-400">
+                FútbolStats © 2026 - Microservicio 03 (Inicio & Dashboard) + Pasarela Gateway :8080.
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

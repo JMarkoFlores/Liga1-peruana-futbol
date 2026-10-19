@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FútbolStats - Registro y Gestión de Equipos</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/common.js"></script>
+</head>
+<body class="h-full bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased transition-colors duration-200">
+
+    <!-- Backdrop móvil -->
+    <div id="sidebarBackdrop" class="fixed inset-0 z-40 bg-slate-900/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-200 lg:hidden"></div>
+
+    <div class="min-h-full flex">
+        <!-- SIDEBAR -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col justify-between transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+            <div>
+                <!-- Brand / Logo -->
+                <div class="h-16 flex items-center justify-between px-6 border-b border-slate-200 dark:border-slate-800">
+                    <a href="index.html" class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center text-white shadow-md shadow-emerald-500/20">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="font-bold text-lg tracking-tight block leading-tight">FútbolStats</span>
+                            <span class="text-[11px] font-medium text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Liga & Torneo</span>
+                        </div>
+                    </a>
+                    <button id="sidebarCloseBtn" class="lg:hidden p-1.5 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-white rounded-lg">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Navigation Links -->
+                <nav class="p-4 space-y-1.5">
+                    <a href="index.html" data-nav-link class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                        <svg class="w-5 h-5 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        </svg>
+                        <span>Inicio</span>
+                    </a>
+                    <a href="dashboard.html" data-nav-link class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                        <svg class="w-5 h-5 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="equipos.html" data-nav-link class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                        <svg class="w-5 h-5 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        <span>Registro de Equipos</span>
+                    </a>
+                    <a href="registro.html" data-nav-link class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                        <svg class="w-5 h-5 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                        </svg>
+                        <span>Registro de Partidos</span>
+                    </a>
+                    <a href="tabla.html" data-nav-link class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                        <svg class="w-5 h-5 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <span>Tabla de Posiciones</span>
+                    </a>
+                    <a href="acerca.html" data-nav-link class="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                        <svg class="w-5 h-5 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Acerca de</span>
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Sidebar Footer -->
+            <div class="p-4 border-t border-slate-200 dark:border-slate-800">
+                <div class="bg-slate-100 dark:bg-slate-800/60 rounded-xl p-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Microservicio 01</span>
+                        <span class="text-[10px] bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-400 font-bold px-2 py-0.5 rounded-full">:8761</span>
+                    </div>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Gestión de Equipos</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN WRAPPER -->
+        <div class="flex-1 flex flex-col min-w-0 lg:pl-64">
+            <!-- HEADER -->
+            <header class="sticky top-0 z-30 h-16 bg-white/80 dark:bg-slate-900/80 backdrop-blur border-b border-slate-200 dark:border-slate-800 px-4 md:px-8 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <button id="sidebarOpenBtn" class="lg:hidden p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                    <div>
+                        <h1 class="text-base md:text-lg font-bold text-slate-900 dark:text-white leading-none">Registro de Equipos</h1>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Servicio01 - Catálogo de Clubes de Fútbol</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-medium">
+                        <span id="apiStatusDot" class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
+                        <span id="apiStatusText" class="text-slate-600 dark:text-slate-300">Conectando...</span>
+                    </div>
+
+                    <button onclick="toggleTheme()" class="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 transition" title="Alternar Modo Oscuro/Claro">
+                        <svg class="w-5 h-5 icon-sun hidden text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                        <svg class="w-5 h-5 icon-moon text-slate-600 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- MAIN CONTENT -->
+            <main class="flex-1 p-4 md:p-8 max-w-7xl mx-auto w-full space-y-8">
+                <!-- FORMULARIO CRUD -->
+                <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 md:p-8 transition">
+                    <div class="flex items-center justify-between pb-6 mb-6 border-b border-slate-100 dark:border-slate-800">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h2 id="formTitulo" class="text-lg font-bold text-slate-900 dark:text-white">Registrar Nuevo Equipo</h2>
+                                <p id="formSubtitulo" class="text-xs text-slate-500 dark:text-slate-400">Agrega un club que estará disponible para el fixture y partidos</p>
+                            </div>
+                        </div>
+                        <span id="badgeModo" class="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400">
+                            Modo Crear
+                        </span>
+                    </div>
+
+                    <form id="equipoForm" onsubmit="guardarEquipo(event)" class="space-y-6">
+                        <input type="hidden" id="equipoId" value="">
+
+                        <!-- Grid de Campos -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <!-- Nombre del Equipo -->
+                            <div>
+                                <label for="nombreEquipo" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
+                                    Nombre del Equipo <span class="text-rose-500">*</span>
+                                </label>
+                                <input type="text" id="nombreEquipo" required placeholder="Ej. Universitario, Alianza Lima..."
+                                       class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm">
+                            </div>
+
+                            <!-- Ciudad / Región -->
+                            <div>
+                                <label for="ciudadEquipo" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
+                                    Ciudad / Sede
+                                </label>
+                                <input type="text" id="ciudadEquipo" placeholder="Ej. Lima, Cusco, Arequipa..."
+                                       class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm">
+                            </div>
+
+                            <!-- Estadio Principal -->
+                            <div>
+                                <label for="estadioEquipo" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">
+                                    Estadio Principal
+                                </label>
+                                <input type="text" id="estadioEquipo" placeholder="Ej. Monumental, Alejandro Villanueva..."
+                                       class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm">
+                            </div>
+                        </div>
+
+                        <!-- Botones de Acción -->
+                        <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-100 dark:border-slate-800">
+                            <button type="submit" id="btnSubmit" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md shadow-emerald-600/20 transition active:scale-95">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span id="btnSubmitTexto">Guardar Equipo</span>
+                            </button>
+
+                            <button type="button" id="btnCancelarEdicion" onclick="cancelarEdicion()" class="hidden inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-sm font-semibold transition">
+                                Cancelar Edición
+                            </button>
+
+                            <button type="button" onclick="limpiarFormulario()" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white text-sm font-medium transition">
+                                Limpiar
+                            </button>
+
+                            <a href="registro.html" class="ml-auto inline-flex items-center gap-2 text-xs font-semibold text-emerald-600 dark:text-emerald-400 hover:underline">
+                                Ir a Registro de Partidos →
+                            </a>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- LISTADO DE EQUIPOS EN TABLA -->
+                <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden space-y-4">
+                    <!-- Barra de Título y Filtros -->
+                    <div class="p-6 pb-0 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                <span>🛡️</span> Equipos Registrados (<span id="totalEquiposContador">0</span>)
+                            </h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Listado de clubes que aparecen en el dropdown para crear partidos</p>
+                        </div>
+
+                        <!-- Filtro de Búsqueda -->
+                        <div class="flex items-center gap-3">
+                            <input type="text" id="filtroTexto" oninput="filtrarEquipos()" placeholder="Buscar por nombre o ciudad..."
+                                   class="px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 w-64">
+                        </div>
+                    </div>
+
+                    <!-- Tabla responsive -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm border-collapse">
+                            <thead class="bg-slate-50 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 text-xs uppercase font-bold tracking-wider border-y border-slate-200 dark:border-slate-800">
+                                <tr>
+                                    <th class="px-6 py-3.5 text-center w-16">#</th>
+                                    <th class="px-6 py-3.5">Nombre del Club</th>
+                                    <th class="px-6 py-3.5">Ciudad / Sede</th>
+                                    <th class="px-6 py-3.5">Estadio</th>
+                                    <th class="px-6 py-3.5 text-right">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaEquiposBody" class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-800 dark:text-slate-200 font-medium">
+                                <tr>
+                                    <td colspan="5" class="px-6 py-8 text-center text-slate-400 text-xs">
+                                        Cargando equipos...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+
+            <!-- FOOTER -->
+            <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 py-6 px-4 md:px-8 text-center text-xs text-slate-500 dark:text-slate-400">
+                FútbolStats © 2026 - Microservicio 01 (Equipos) + Pasarela Gateway :8080.
+            </footer>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT CRUD DE EQUIPOS -->
+    <script>
+        let equiposCache = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            cargarEquipos();
+        });
+
+        async function cargarEquipos() {
+            try {
+                const res = await fetch(`${API_BASE}/equipos`);
+                if (!res.ok) throw new Error('Error al listar equipos');
+                equiposCache = await res.json();
+                document.getElementById('totalEquiposContador').textContent = equiposCache.length;
+                renderizarTabla(equiposCache);
+            } catch (err) {
+                console.error(err);
+                showToast('Error al conectar con la API de equipos', 'error');
+                document.getElementById('tablaEquiposBody').innerHTML = `
+                    <tr>
+                        <td colspan="5" class="px-6 py-8 text-center text-rose-500 text-xs">
+                            No se pudo conectar con el endpoint /api/equipos. Asegúrate de que Servicio01 y Pasarela-Gateway estén en ejecución.
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        function filtrarEquipos() {
+            const query = document.getElementById('filtroTexto').value.trim().toLowerCase();
+            let filtrados = equiposCache;
+
+            if (query) {
+                filtrados = filtrados.filter(e =>
+                    e.nombre.toLowerCase().includes(query) ||
+                    (e.ciudad && e.ciudad.toLowerCase().includes(query)) ||
+                    (e.estadio && e.estadio.toLowerCase().includes(query))
+                );
+            }
+
+            renderizarTabla(filtrados);
+        }
+
+        function renderizarTabla(equipos) {
+            const tbody = document.getElementById('tablaEquiposBody');
+
+            if (!equipos || equipos.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="px-6 py-10 text-center text-slate-400 text-xs">
+                            No se encontraron equipos registrados.<br>Utiliza el formulario superior para registrar uno.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = equipos.map((e, idx) => `
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
+                    <td class="px-6 py-4 text-center text-xs font-bold text-slate-400">
+                        ${idx + 1}
+                    </td>
+                    <td class="px-6 py-4 font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <span class="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-400 font-black text-xs flex items-center justify-center">
+                            ${e.nombre.substring(0, 2).toUpperCase()}
+                        </span>
+                        <span>${e.nombre}</span>
+                    </td>
+                    <td class="px-6 py-4 text-xs text-slate-600 dark:text-slate-300">
+                        ${e.ciudad || '-'}
+                    </td>
+                    <td class="px-6 py-4 text-xs text-slate-600 dark:text-slate-300">
+                        ${e.estadio || '-'}
+                    </td>
+                    <td class="px-6 py-4 text-right space-x-1">
+                        <button onclick="editarEquipo(${e.id})" class="p-2 rounded-lg text-blue-600 hover:bg-blue-50 dark:text-blue-400 dark:hover:bg-blue-950/50 transition" title="Editar equipo">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                            </svg>
+                        </button>
+                        <button onclick="confirmarEliminarEquipo(${e.id})" class="p-2 rounded-lg text-rose-600 hover:bg-rose-50 dark:text-rose-400 dark:hover:bg-rose-950/50 transition" title="Eliminar equipo">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        async function guardarEquipo(event) {
+            event.preventDefault();
+
+            const id = document.getElementById('equipoId').value;
+            const nombre = document.getElementById('nombreEquipo').value.trim();
+            const ciudad = document.getElementById('ciudadEquipo').value.trim();
+            const estadio = document.getElementById('estadioEquipo').value.trim();
+
+            if (!nombre) {
+                showToast('El nombre del equipo es obligatorio', 'error');
+                return;
+            }
+
+            const payload = { nombre, ciudad, estadio };
+            const esEdicion = Boolean(id);
+            const url = esEdicion ? `${API_BASE}/equipos/${id}` : `${API_BASE}/equipos`;
+            const method = esEdicion ? 'PUT' : 'POST';
+
+            try {
+                const res = await fetch(url, {
+                    method,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!res.ok) {
+                    const errorMsg = await res.text();
+                    throw new Error(errorMsg || 'Error en el servidor');
+                }
+
+                showToast(esEdicion ? 'Equipo actualizado correctamente' : 'Equipo registrado con éxito', 'success');
+                limpiarFormulario();
+                cancelarEdicion();
+                await cargarEquipos();
+            } catch (err) {
+                console.error(err);
+                showToast('Error al guardar el equipo: ' + err.message, 'error');
+            }
+        }
+
+        function editarEquipo(id) {
+            const e = equiposCache.find(item => item.id === id);
+            if (!e) return;
+
+            document.getElementById('equipoId').value = e.id;
+            document.getElementById('nombreEquipo').value = e.nombre;
+            document.getElementById('ciudadEquipo').value = e.ciudad || '';
+            document.getElementById('estadioEquipo').value = e.estadio || '';
+
+            document.getElementById('formTitulo').textContent = `Editar Equipo (#${e.id})`;
+            document.getElementById('formSubtitulo').textContent = `Modificando los datos de ${e.nombre}`;
+            document.getElementById('badgeModo').textContent = 'Modo Edición';
+            document.getElementById('badgeModo').className = 'text-xs font-semibold px-3 py-1 rounded-full bg-blue-100 text-blue-700 dark:bg-blue-950/60 dark:text-blue-400';
+            document.getElementById('btnSubmitTexto').textContent = 'Actualizar Equipo';
+            document.getElementById('btnCancelarEdicion').classList.remove('hidden');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function cancelarEdicion() {
+            limpiarFormulario();
+            document.getElementById('equipoId').value = '';
+            document.getElementById('formTitulo').textContent = 'Registrar Nuevo Equipo';
+            document.getElementById('formSubtitulo').textContent = 'Agrega un club que estará disponible para el fixture y partidos';
+            document.getElementById('badgeModo').textContent = 'Modo Crear';
+            document.getElementById('badgeModo').className = 'text-xs font-semibold px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400';
+            document.getElementById('btnSubmitTexto').textContent = 'Guardar Equipo';
+            document.getElementById('btnCancelarEdicion').classList.add('hidden');
+        }
+
+        function limpiarFormulario() {
+            document.getElementById('equipoForm').reset();
+            document.getElementById('equipoId').value = '';
+        }
+
+        async function confirmarEliminarEquipo(id) {
+            const equipo = equiposCache.find(e => e.id === id);
+            const nombre = equipo ? equipo.nombre : `equipo #${id}`;
+
+            if (!confirm(`¿Estás seguro de que deseas eliminar el equipo "${nombre}"?`)) {
+                return;
+            }
+
+            try {
+                const res = await fetch(`${API_BASE}/equipos/${id}`, { method: 'DELETE' });
+                if (!res.ok) throw new Error('Error al eliminar');
+
+                showToast('Equipo eliminado correctamente', 'success');
+                await cargarEquipos();
+            } catch (err) {
+                console.error(err);
+                showToast('Error al eliminar el equipo', 'error');
+            }
+        }
+    </script>
+</body>
+</html>

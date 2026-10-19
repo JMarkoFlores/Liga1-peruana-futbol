@@ -1,2 +1,16 @@
-/mvnw text eol=lf
+# Asegurar finales de línea correctos para scripts ejecutables
+* text=auto
+
+# Scripts bash para Linux/macOS
+**/mvnw text eol=lf
+*.sh text eol=lf
+
+# Scripts batch para Windows
+**/mvnw.cmd text eol=crlf
 *.cmd text eol=crlf
+*.bat text eol=crlf
+
+# Binarios / Documentos
+*.pdf binary
+*.docx binary
+*.jar binary

@@ -1,0 +1,113 @@
+# ==========================================
+# Java & Maven
+# ==========================================
+target/
+*.class
+
+# Package Files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Maven Wrapper JAR (el properties sí se incluye en el repo)
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Maven release & temporary files
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# ==========================================
+# Logs & Crash Dumps
+# ==========================================
+*.log
+logs/
+hs_err_pid*
+replay_pid*
+
+# ==========================================
+# Eclipse & Spring Tool Suite (STS)
+# ==========================================
+.classpath
+.project
+.settings/
+.factorypath
+.apt_generated/
+.apt_generated_tests/
+.springBeans
+.sts4-cache/
+
+# ==========================================
+# IntelliJ IDEA
+# ==========================================
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# ==========================================
+# Visual Studio Code
+# ==========================================
+.vscode/
+*.code-workspace
+.history/
+
+# ==========================================
+# NetBeans
+# ==========================================
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# ==========================================
+# Sistema Operativo (Windows / macOS / Linux)
+# ==========================================
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Linux
+*~
+
+# ==========================================
+# Archivos de Entorno y Temporales
+# ==========================================
+*.env
+*.env.local
+*.tmp
+*.bak
+
+# Credenciales locales de Spring Boot
+**/src/main/resources/application-local.properties
+# Si prefieres no subir application.properties y usar solo el .example, descomenta la siguiente linea:
+# **/src/main/resources/application.properties
