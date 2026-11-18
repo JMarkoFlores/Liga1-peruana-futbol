@@ -24,6 +24,21 @@ Compose usa el proyecto `liga1-loadbalancer-demo`, su red
 Las publicaciones HTTP están limitadas a 127.0.0.1. No se usa MySQL de Windows
 ni se montan datos de otros proyectos. Las contraseñas son exclusivas de la demo.
 
+## Clonar la rama e iniciar Docker Desktop
+
+Clonar la rama del taller y entrar en la raíz del repositorio:
+
+```powershell
+git clone --branch taller-loadbalancer https://github.com/JMarkoFlores/Liga1-peruana-futbol.git
+cd Liga1-peruana-futbol
+```
+
+Abrir Docker Desktop y esperar a que el motor Linux esté activo antes de continuar.
+
+Para la modalidad Docker no se necesita instalar Java, Maven ni MySQL en el host:
+las imágenes incluyen el entorno necesario. Postman se utiliza para la prueba
+visual; Node/npm sólo para las comprobaciones complementarias.
+
 ## Preparar variables y construir
 
 Generar el archivo ignorado `.env` con contraseñas aleatorias, sin mostrarlas:
