@@ -1,0 +1,327 @@
+{
+  "createdAt": "2026-11-17T22:11:18.170Z",
+  "containerId": "5de0f22b3dbdba8164ebfac4905a163d8f40acba82cf7ad29ca4811eb14d5ff3",
+  "volume": "liga1-loadbalancer-demo_mysql-data",
+  "source": "Servicio01/script_sistema_bd.sql",
+  "sourceSha256": "14f61602a35249482e262cce640354f204fa9e032d2569395859f9eab156adbc",
+  "changes": [
+    {
+      "table": "equipos",
+      "id": 8,
+      "column": "nombre",
+      "before": "CÃ©sar Vallejo",
+      "beforeUtf8Hex": "43c383c2a97361722056616c6c656a6f",
+      "after": "César Vallejo",
+      "afterUtf8Hex": "43c3a97361722056616c6c656a6f",
+      "sourceLine": 35
+    },
+    {
+      "table": "equipos",
+      "id": 9,
+      "column": "estadio",
+      "before": "UniÃ³n Tarma",
+      "beforeUtf8Hex": "556e69c383c2b36e205461726d61",
+      "after": "Unión Tarma",
+      "afterUtf8Hex": "556e69c3b36e205461726d61",
+      "sourceLine": 36
+    },
+    {
+      "table": "equipos",
+      "id": 12,
+      "column": "estadio",
+      "before": "HÃ©roes de San RamÃ³n",
+      "beforeUtf8Hex": "48c383c2a9726f65732064652053616e2052616dc383c2b36e",
+      "after": "Héroes de San Ramón",
+      "afterUtf8Hex": "48c3a9726f65732064652053616e2052616dc3b36e",
+      "sourceLine": 39
+    },
+    {
+      "table": "equipos",
+      "id": 13,
+      "column": "nombre",
+      "before": "AtlÃ©tico Grau",
+      "beforeUtf8Hex": "41746cc383c2a97469636f2047726175",
+      "after": "Atlético Grau",
+      "afterUtf8Hex": "41746cc3a97469636f2047726175",
+      "sourceLine": 40
+    },
+    {
+      "table": "equipos",
+      "id": 16,
+      "column": "nombre",
+      "before": "Alianza AtlÃ©tico",
+      "beforeUtf8Hex": "416c69616e7a612041746cc383c2a97469636f",
+      "after": "Alianza Atlético",
+      "afterUtf8Hex": "416c69616e7a612041746cc3a97469636f",
+      "sourceLine": 43
+    },
+    {
+      "table": "partidos",
+      "id": 4,
+      "column": "equipo_visitante",
+      "before": "CÃ©sar Vallejo",
+      "beforeUtf8Hex": "43c383c2a97361722056616c6c656a6f",
+      "after": "César Vallejo",
+      "afterUtf8Hex": "43c3a97361722056616c6c656a6f",
+      "sourceLine": 77
+    },
+    {
+      "table": "partidos",
+      "id": 9,
+      "column": "equipo_local",
+      "before": "CÃ©sar Vallejo",
+      "beforeUtf8Hex": "43c383c2a97361722056616c6c656a6f",
+      "after": "César Vallejo",
+      "afterUtf8Hex": "43c3a97361722056616c6c656a6f",
+      "sourceLine": 70
+    },
+    {
+      "table": "partidos",
+      "id": 14,
+      "column": "equipo_visitante",
+      "before": "CÃ©sar Vallejo",
+      "beforeUtf8Hex": "43c383c2a97361722056616c6c656a6f",
+      "after": "César Vallejo",
+      "afterUtf8Hex": "43c3a97361722056616c6c656a6f",
+      "sourceLine": 77
+    }
+  ],
+  "before": {
+    "equipos": [
+      {
+        "id": 1,
+        "ciudad": "Lima",
+        "nombre": "Universitario",
+        "estadio": "Monumental U Marathon"
+      },
+      {
+        "id": 2,
+        "ciudad": "Lima",
+        "nombre": "Alianza Lima",
+        "estadio": "Alejandro Villanueva (Matute)"
+      },
+      {
+        "id": 3,
+        "ciudad": "Lima",
+        "nombre": "Sporting Cristal",
+        "estadio": "Alberto Gallardo"
+      },
+      {
+        "id": 4,
+        "ciudad": "Arequipa",
+        "nombre": "FBC Melgar",
+        "estadio": "Monumental de la UNSA"
+      },
+      {
+        "id": 5,
+        "ciudad": "Cusco",
+        "nombre": "Cienciano",
+        "estadio": "Inca Garcilaso de la Vega"
+      },
+      {
+        "id": 6,
+        "ciudad": "Callao",
+        "nombre": "Sport Boys",
+        "estadio": "Miguel Grau"
+      },
+      {
+        "id": 7,
+        "ciudad": "Cusco",
+        "nombre": "Cusco FC",
+        "estadio": "Inca Garcilaso de la Vega"
+      },
+      {
+        "id": 8,
+        "ciudad": "Trujillo",
+        "nombre": "CÃ©sar Vallejo",
+        "estadio": "Mansiche"
+      },
+      {
+        "id": 9,
+        "ciudad": "Tarma",
+        "nombre": "ADT Tarma",
+        "estadio": "UniÃ³n Tarma"
+      },
+      {
+        "id": 10,
+        "ciudad": "Cusco",
+        "nombre": "Deportivo Garcilaso",
+        "estadio": "Inca Garcilaso de la Vega"
+      },
+      {
+        "id": 11,
+        "ciudad": "Andahuaylas",
+        "nombre": "Los Chankas",
+        "estadio": "Los Chankas"
+      },
+      {
+        "id": 12,
+        "ciudad": "Cajamarca",
+        "nombre": "UTC Cajamarca",
+        "estadio": "HÃ©roes de San RamÃ³n"
+      },
+      {
+        "id": 13,
+        "ciudad": "Piura",
+        "nombre": "AtlÃ©tico Grau",
+        "estadio": "Campeones del 36"
+      },
+      {
+        "id": 14,
+        "ciudad": "Huancayo",
+        "nombre": "Sport Huancayo",
+        "estadio": "Huancayo"
+      },
+      {
+        "id": 15,
+        "ciudad": "Cutervo",
+        "nombre": "Comerciantes Unidos",
+        "estadio": "Juan Maldonado Gamarra"
+      },
+      {
+        "id": 16,
+        "ciudad": "Sullana",
+        "nombre": "Alianza AtlÃ©tico",
+        "estadio": "Campeones del 36"
+      }
+    ],
+    "partidos": [
+      {
+        "id": 1,
+        "fecha": "2026-02-01",
+        "jornada": 1,
+        "goles_local": 2,
+        "equipo_local": "Universitario",
+        "goles_visitante": 1,
+        "equipo_visitante": "FBC Melgar"
+      },
+      {
+        "id": 2,
+        "fecha": "2026-02-02",
+        "jornada": 1,
+        "goles_local": 1,
+        "equipo_local": "Alianza Lima",
+        "goles_visitante": 1,
+        "equipo_visitante": "Sporting Cristal"
+      },
+      {
+        "id": 3,
+        "fecha": "2026-02-02",
+        "jornada": 1,
+        "goles_local": 3,
+        "equipo_local": "Cienciano",
+        "goles_visitante": 0,
+        "equipo_visitante": "Sport Boys"
+      },
+      {
+        "id": 4,
+        "fecha": "2026-02-03",
+        "jornada": 1,
+        "goles_local": 2,
+        "equipo_local": "Cusco FC",
+        "goles_visitante": 0,
+        "equipo_visitante": "CÃ©sar Vallejo"
+      },
+      {
+        "id": 5,
+        "fecha": "2026-02-03",
+        "jornada": 1,
+        "goles_local": 1,
+        "equipo_local": "ADT Tarma",
+        "goles_visitante": 0,
+        "equipo_visitante": "Deportivo Garcilaso"
+      },
+      {
+        "id": 6,
+        "fecha": "2026-02-08",
+        "jornada": 2,
+        "goles_local": 2,
+        "equipo_local": "Sporting Cristal",
+        "goles_visitante": 2,
+        "equipo_visitante": "Universitario"
+      },
+      {
+        "id": 7,
+        "fecha": "2026-02-09",
+        "jornada": 2,
+        "goles_local": 1,
+        "equipo_local": "FBC Melgar",
+        "goles_visitante": 2,
+        "equipo_visitante": "Alianza Lima"
+      },
+      {
+        "id": 8,
+        "fecha": "2026-02-09",
+        "jornada": 2,
+        "goles_local": 1,
+        "equipo_local": "Sport Boys",
+        "goles_visitante": 1,
+        "equipo_visitante": "ADT Tarma"
+      },
+      {
+        "id": 9,
+        "fecha": "2026-02-10",
+        "jornada": 2,
+        "goles_local": 0,
+        "equipo_local": "CÃ©sar Vallejo",
+        "goles_visitante": 2,
+        "equipo_visitante": "Cienciano"
+      },
+      {
+        "id": 10,
+        "fecha": "2026-02-10",
+        "jornada": 2,
+        "goles_local": 1,
+        "equipo_local": "Deportivo Garcilaso",
+        "goles_visitante": 3,
+        "equipo_visitante": "Cusco FC"
+      },
+      {
+        "id": 11,
+        "fecha": "2026-02-15",
+        "jornada": 3,
+        "goles_local": 3,
+        "equipo_local": "Universitario",
+        "goles_visitante": 1,
+        "equipo_visitante": "Cienciano"
+      },
+      {
+        "id": 12,
+        "fecha": "2026-02-16",
+        "jornada": 3,
+        "goles_local": 2,
+        "equipo_local": "Alianza Lima",
+        "goles_visitante": 1,
+        "equipo_visitante": "Cusco FC"
+      },
+      {
+        "id": 13,
+        "fecha": "2026-02-16",
+        "jornada": 3,
+        "goles_local": 2,
+        "equipo_local": "Sporting Cristal",
+        "goles_visitante": 0,
+        "equipo_visitante": "FBC Melgar"
+      },
+      {
+        "id": 14,
+        "fecha": "2026-02-17",
+        "jornada": 3,
+        "goles_local": 2,
+        "equipo_local": "ADT Tarma",
+        "goles_visitante": 1,
+        "equipo_visitante": "CÃ©sar Vallejo"
+      },
+      {
+        "id": 15,
+        "fecha": "2026-02-17",
+        "jornada": 3,
+        "goles_local": 0,
+        "equipo_local": "Sport Boys",
+        "goles_visitante": 0,
+        "equipo_visitante": "Deportivo Garcilaso"
+      }
+    ]
+  },
+  "beforeSha256": "cef5105e4cead067651b6fbae509fa9bf0288602920f65b71b12d034dbd9a16c"
+}

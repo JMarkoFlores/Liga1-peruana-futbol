@@ -1,0 +1,167 @@
+name: liga1-loadbalancer-demo
+
+x-java: &java
+  restart: unless-stopped
+  mem_limit: 512m
+  networks: [demo]
+  healthcheck: &http-health
+    interval: 10s
+    timeout: 5s
+    retries: 18
+    start_period: 45s
+
+x-business-env: &business-env
+  SPRING_PROFILES_ACTIVE: docker
+  DB_URL: jdbc:mysql://mysql:3306/sistema?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+  DB_USERNAME: liga1_demo
+  DB_PASSWORD: ${MYSQL_PASSWORD:?Ejecutar scripts/New-DemoEnv.ps1 y usar --env-file}
+  JAVA_TOOL_OPTIONS: -XX:MaxRAMPercentage=65.0
+
+x-business-depends: &business-depends
+  mysql:
+    condition: service_healthy
+  eureka:
+    condition: service_healthy
+
+services:
+  mysql:
+    image: mysql:8.4
+    restart: unless-stopped
+    mem_limit: 512m
+    environment:
+      # mysql usa charset=auto; sin locale el SQL UTF-8 se interpreta como latin1.
+      LANG: C.UTF-8
+      MYSQL_DATABASE: sistema
+      MYSQL_USER: liga1_demo
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Falta MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Falta MYSQL_ROOT_PASSWORD}
+    networks: [demo]
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ../Servicio01/script_sistema_bd.sql:/docker-entrypoint-initdb.d/10-sistema.sql:ro
+      - ./mysql/99-demo-ready.sql:/docker-entrypoint-initdb.d/99-demo-ready.sql:ro
+      - ./mysql/healthcheck.sh:/opt/demo-healthcheck.sh:ro
+    healthcheck:
+      test: [CMD, sh, /opt/demo-healthcheck.sh]
+      interval: 5s
+      timeout: 5s
+      retries: 36
+      start_period: 45s
+
+  eureka:
+    <<: *java
+    image: liga1-loadbalancer-demo/eureka:etapa2
+    build:
+      context: ..
+      dockerfile: demo-loadbalancer/Dockerfile
+      args:
+        MODULE: Servidor-Eureka
+        JAR_FILE: Servidor-Eureka-0.0.1-SNAPSHOT.jar
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      JAVA_TOOL_OPTIONS: -XX:MaxRAMPercentage=65.0
+    ports: ["127.0.0.1:${EUREKA_PORT:-8760}:8760"]
+    healthcheck:
+      <<: *http-health
+      test: [CMD, curl, -fsS, --max-time, "3", http://localhost:8760/eureka/apps]
+
+  servicio01-a:
+    <<: *java
+    image: liga1-loadbalancer-demo/servicio01:etapa2
+    build: &servicio01-build
+      context: ..
+      dockerfile: demo-loadbalancer/Dockerfile
+      args:
+        MODULE: Servicio01
+        JAR_FILE: demo-0.0.1-SNAPSHOT.jar
+    environment:
+      <<: *business-env
+      INSTANCE_ID: Servicio01-A
+      EUREKA_HOSTNAME: servicio01-a
+    ports: ["127.0.0.1:${REPLICA_A_PORT:-8761}:8761"]
+    depends_on: *business-depends
+    healthcheck:
+      <<: *http-health
+      test: [CMD, curl, -fsS, --max-time, "3", http://localhost:8761/api/equipos]
+
+  servicio01-b:
+    <<: *java
+    image: liga1-loadbalancer-demo/servicio01:etapa2
+    build: *servicio01-build
+    environment:
+      <<: *business-env
+      INSTANCE_ID: Servicio01-B
+      EUREKA_HOSTNAME: servicio01-b
+    ports: ["127.0.0.1:${REPLICA_B_PORT:-8764}:8761"]
+    depends_on: *business-depends
+    healthcheck:
+      <<: *http-health
+      test: [CMD, curl, -fsS, --max-time, "3", http://localhost:8761/api/equipos]
+
+  gateway:
+    <<: *java
+    image: liga1-loadbalancer-demo/gateway:etapa2
+    build:
+      context: ..
+      dockerfile: demo-loadbalancer/Dockerfile
+      args:
+        MODULE: Pasarela-Gateway
+        JAR_FILE: Pasarela-Gateway-0.0.1-SNAPSHOT.jar
+    environment:
+      SPRING_PROFILES_ACTIVE: docker,taller-loadbalancer
+      JAVA_TOOL_OPTIONS: -XX:MaxRAMPercentage=65.0
+    ports: ["127.0.0.1:${GATEWAY_PORT:-8080}:8080"]
+    depends_on:
+      eureka:
+        condition: service_healthy
+      servicio01-a:
+        condition: service_healthy
+      servicio01-b:
+        condition: service_healthy
+    healthcheck:
+      <<: *http-health
+      # No consume el historial /api/ del filtro; el descubrimiento se verifica aparte.
+      test: [CMD, curl, -fsS, --max-time, "3", http://localhost:8080/equipos.html]
+
+  servicio02:
+    <<: *java
+    profiles: [sistema-completo]
+    image: liga1-loadbalancer-demo/servicio02:etapa2
+    build:
+      context: ..
+      dockerfile: demo-loadbalancer/Dockerfile
+      args:
+        MODULE: Servicio02
+        JAR_FILE: Servicio02-0.0.1-SNAPSHOT.jar
+    environment:
+      <<: *business-env
+      EUREKA_HOSTNAME: servicio02
+    depends_on: *business-depends
+    healthcheck:
+      <<: *http-health
+      test: [CMD, curl, -fsS, --max-time, "3", http://localhost:8762/api/partidos]
+
+  servicio03:
+    <<: *java
+    profiles: [sistema-completo]
+    image: liga1-loadbalancer-demo/servicio03:etapa2
+    build:
+      context: ..
+      dockerfile: demo-loadbalancer/Dockerfile
+      args:
+        MODULE: Servicio03
+        JAR_FILE: Servicio03-0.0.1-SNAPSHOT.jar
+    environment:
+      <<: *business-env
+      EUREKA_HOSTNAME: servicio03
+    depends_on: *business-depends
+    healthcheck:
+      <<: *http-health
+      test: [CMD, curl, -fsS, --max-time, "3", http://localhost:8763/api/tabla-posiciones]
+
+networks:
+  demo:
+    driver: bridge
+
+volumes:
+  mysql-data:

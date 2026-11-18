@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.time.Instant;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.LongSupplier;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -25,6 +28,21 @@ public class ConsecutiveEndpointLimitFilter extends OncePerRequestFilter {
     private static final int MAX_CONSECUTIVE_ALLOWED = 2;
     private static final long COOLDOWN_MILLIS = 30_000; // 30 segundos de inactividad reinician el conteo
 
+    private final boolean enabled;
+    private final LongSupplier currentTimeMillis;
+
+    @Autowired
+    public ConsecutiveEndpointLimitFilter(
+            @Value("${liga1.gateway.consecutive-limit.enabled:true}") boolean enabled) {
+        this(enabled, System::currentTimeMillis);
+    }
+
+    // Reloj controlable para verificar el reinicio sin esperas reales en los tests.
+    ConsecutiveEndpointLimitFilter(boolean enabled, LongSupplier currentTimeMillis) {
+        this.enabled = enabled;
+        this.currentTimeMillis = currentTimeMillis;
+    }
+
     // Mapa thread-safe para rastrear el estado de cada cliente (por IP)
     private final Map<String, ClientHistory> clientHistories = new ConcurrentHashMap<>();
 
@@ -41,7 +59,7 @@ public class ConsecutiveEndpointLimitFilter extends OncePerRequestFilter {
         String path = request.getRequestURI();
 
         // Aplicar la regla a todos los endpoints de API (/api/**)
-        if (path.startsWith("/api/")) {
+        if (enabled && path.startsWith("/api/")) {
             String method = request.getMethod();
             String endpointKey = method + " " + path;
             String clientIp = getClientIp(request);
@@ -52,7 +70,7 @@ public class ConsecutiveEndpointLimitFilter extends OncePerRequestFilter {
             int currentAttempts = 0;
 
             synchronized (history) {
-                long now = System.currentTimeMillis();
+                long now = currentTimeMillis.getAsLong();
 
                 // Si ha pasado más de 30 segundos sin consultar, reiniciar el conteo consecutivo
                 if (now - history.lastRequestTimestamp > COOLDOWN_MILLIS) {

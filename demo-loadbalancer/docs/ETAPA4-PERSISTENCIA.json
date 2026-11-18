@@ -1,0 +1,127 @@
+{
+  "startedAt": "2026-11-17T21:47:56.796Z",
+  "mode": "snapshot-readonly",
+  "baseUrl": "http://127.0.0.1:8080",
+  "marker": "AUDIT-852a20f1-3a46-42df-9769-72d61b672f93",
+  "checks": [
+    {
+      "name": "mysql: proyecto exclusivo",
+      "passed": true
+    },
+    {
+      "name": "mysql: sano",
+      "passed": true
+    },
+    {
+      "name": "Volumen exclusivo de demo",
+      "passed": true
+    },
+    {
+      "name": "gateway: proyecto exclusivo",
+      "passed": true
+    },
+    {
+      "name": "gateway: sano",
+      "passed": true
+    },
+    {
+      "name": "Gateway en modo taller",
+      "passed": true
+    },
+    {
+      "name": "Puerto HTTP pertenece al Gateway de demo",
+      "passed": true
+    },
+    {
+      "name": "servicio01-a: proyecto exclusivo",
+      "passed": true
+    },
+    {
+      "name": "servicio01-a: sano",
+      "passed": true
+    },
+    {
+      "name": "servicio01-b: proyecto exclusivo",
+      "passed": true
+    },
+    {
+      "name": "servicio01-b: sano",
+      "passed": true
+    },
+    {
+      "name": "servicio02: proyecto exclusivo",
+      "passed": true
+    },
+    {
+      "name": "servicio02: sano",
+      "passed": true
+    },
+    {
+      "name": "servicio03: proyecto exclusivo",
+      "passed": true
+    },
+    {
+      "name": "servicio03: sano",
+      "passed": true
+    },
+    {
+      "name": "GET /api/equipos: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "GET /api/equipos: identidad esperada",
+      "passed": true
+    },
+    {
+      "name": "GET /api/partidos: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Equipos con datos",
+      "passed": true
+    },
+    {
+      "name": "Partidos con datos",
+      "passed": true
+    },
+    {
+      "name": "Marca de inicialización SQL",
+      "passed": true
+    },
+    {
+      "name": "Conteos SQL coinciden con API",
+      "passed": true
+    },
+    {
+      "name": "Datos y duplicados idénticos tras detener/arrancar",
+      "passed": true
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/api/equipos",
+      "status": 200,
+      "instance": "Servicio01-B"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/api/partidos",
+      "status": 200,
+      "instance": null
+    }
+  ],
+  "cleanup": [],
+  "before": {
+    "teams": 16,
+    "matches": 15,
+    "teamsSha256": "672ff25bf351a01eac4c648c43de163ef1147013e26cff3ec0dd5791dd5c4d3f",
+    "matchesSha256": "a85e752cbbdef79531de90006c105a9bd1f2628b04af3e28a5ed248ac6aca209",
+    "duplicateMatchRows": 0,
+    "seedVersion": "liga1-v1"
+  },
+  "completedAt": "2026-11-17T21:47:57.320Z",
+  "exitCode": 0,
+  "passed": 23,
+  "failed": 0
+}

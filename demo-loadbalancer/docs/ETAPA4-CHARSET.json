@@ -1,0 +1,14 @@
+{
+  "kind": "Inicializacion real de SQL original en MySQL temporal, sin red ni volumen persistente",
+  "date": "2026-11-17T16:50:53.3920898-05:00",
+  "locale": "C.UTF-8",
+  "passed": true,
+  "temporaryContainerRemoved": true,
+  "initialVerifierIssue": "Primera consulta uso -h127.0.0.1 y MySQL intento conectar a 127. Se corrigio a --host=127.0.0.1 entre comillas y se repitio con otro contenedor temporal nuevo.",
+  "rows": [
+    "16",
+    "15",
+    "43C3A97361722056616C6C656A6F",
+    "utf8mb4"
+  ]
+}

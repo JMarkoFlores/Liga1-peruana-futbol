@@ -1,0 +1,443 @@
+{
+  "generatedAt": "2026-11-17T21:52:08.277Z",
+  "branch": "taller-loadbalancer",
+  "baseCommit": "4722fa7e98f0c40bd581ff1ed13c8ff5f240501d",
+  "junit": {
+    "runtime": "JDK 25.0.4.1 host; release 21 conservado",
+    "suites": [
+      {
+        "module": "Pasarela-Gateway",
+        "source": "TEST-com.example.Pasarela_Gateway.ConsecutiveEndpointLimitFilterTest.xml",
+        "name": "com.example.Pasarela_Gateway.ConsecutiveEndpointLimitFilterTest",
+        "time": "0.944",
+        "tests": "8",
+        "errors": "0",
+        "skipped": "0",
+        "failures": "0",
+        "exitCode": 0
+      },
+      {
+        "module": "Pasarela-Gateway",
+        "source": "TEST-com.example.Pasarela_Gateway.GatewayLoadBalancerIntegrationTest.xml",
+        "name": "com.example.Pasarela_Gateway.GatewayLoadBalancerIntegrationTest",
+        "time": "5.359",
+        "tests": "2",
+        "errors": "0",
+        "skipped": "0",
+        "failures": "0",
+        "exitCode": 0
+      },
+      {
+        "module": "Pasarela-Gateway",
+        "source": "TEST-com.example.Pasarela_Gateway.PasarelaGatewayApplicationTests.xml",
+        "name": "com.example.Pasarela_Gateway.PasarelaGatewayApplicationTests",
+        "time": "0.705",
+        "tests": "1",
+        "errors": "0",
+        "skipped": "0",
+        "failures": "0",
+        "exitCode": 0
+      },
+      {
+        "module": "Servicio01",
+        "source": "TEST-com.sistemas.ejemplo.InstanciaHeaderFilterTest.xml",
+        "name": "com.sistemas.ejemplo.InstanciaHeaderFilterTest",
+        "time": "3.806",
+        "tests": "5",
+        "errors": "0",
+        "skipped": "0",
+        "failures": "0",
+        "exitCode": 0
+      }
+    ]
+  },
+  "newman": [
+    {
+      "mode": "filtro",
+      "source": "Newman 6.2.3, ejecución por agente; no UI Postman",
+      "startedAt": "2026-11-17T21:45:30.264Z",
+      "completedAt": "2026-11-17T21:45:31.005Z",
+      "exitCode": 0,
+      "iterations": 1,
+      "requests": 3,
+      "assertions": 10,
+      "assertionFailures": 0,
+      "failures": 0,
+      "instanceCounts": {
+        "Servicio01-A": 1,
+        "Servicio01-B": 1
+      },
+      "records": [
+        {
+          "iteration": 1,
+          "request": "01 - Permitida 1",
+          "status": 200,
+          "instance": "Servicio01-A",
+          "failedAssertions": []
+        },
+        {
+          "iteration": 1,
+          "request": "02 - Permitida 2",
+          "status": 200,
+          "instance": "Servicio01-B",
+          "failedAssertions": []
+        },
+        {
+          "iteration": 1,
+          "request": "03 - Tercera bloqueada",
+          "status": 429,
+          "instance": null,
+          "failedAssertions": []
+        }
+      ]
+    },
+    {
+      "mode": "balanceo",
+      "source": "Newman 6.2.3, ejecución por agente; no UI Postman",
+      "startedAt": "2026-11-17T21:46:48.908Z",
+      "completedAt": "2026-11-17T21:46:51.586Z",
+      "exitCode": 0,
+      "iterations": 12,
+      "requests": 12,
+      "assertions": 53,
+      "assertionFailures": 0,
+      "failures": 0,
+      "instanceCounts": {
+        "Servicio01-A": 6,
+        "Servicio01-B": 6
+      },
+      "records": [
+        {
+          "iteration": 1,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-A",
+          "failedAssertions": []
+        },
+        {
+          "iteration": 2,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-B",
+          "failedAssertions": []
+        },
+        {
+          "iteration": 3,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-A",
+          "failedAssertions": []
+        },
+        {
+          "iteration": 4,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-B",
+          "failedAssertions": []
+        },
+        {
+          "iteration": 5,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-A",
+          "failedAssertions": []
+        },
+        {
+          "iteration": 6,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-B",
+          "failedAssertions": []
+        },
+        {
+          "iteration": 7,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-A",
+          "failedAssertions": []
+        },
+        {
+          "iteration": 8,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-B",
+          "failedAssertions": []
+        },
+        {
+          "iteration": 9,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-A",
+          "failedAssertions": []
+        },
+        {
+          "iteration": 10,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-B",
+          "failedAssertions": []
+        },
+        {
+          "iteration": 11,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-A",
+          "failedAssertions": []
+        },
+        {
+          "iteration": 12,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-B",
+          "failedAssertions": []
+        }
+      ]
+    }
+  ],
+  "browser": {
+    "views": [
+      {
+        "path": "/",
+        "status": 200,
+        "title": "FútbolStats - Sistema de Gestión de Torneos",
+        "heading": "Módulo de Inicio",
+        "tableRows": 0
+      },
+      {
+        "path": "/index.html",
+        "status": 200,
+        "title": "FútbolStats - Sistema de Gestión de Torneos",
+        "heading": "Módulo de Inicio",
+        "tableRows": 0
+      },
+      {
+        "path": "/equipos.html",
+        "status": 200,
+        "title": "FútbolStats - Registro y Gestión de Equipos",
+        "heading": "Registro de Equipos",
+        "tableRows": 16
+      },
+      {
+        "path": "/registro.html",
+        "status": 200,
+        "title": "FútbolStats - Registro y Gestión de Partidos",
+        "heading": "Registro de Partidos",
+        "tableRows": 15
+      },
+      {
+        "path": "/tabla.html",
+        "status": 200,
+        "title": "FútbolStats - Tabla de Posiciones",
+        "heading": "Tabla de Posiciones",
+        "tableRows": 10
+      },
+      {
+        "path": "/acerca.html",
+        "status": 200,
+        "title": "FútbolStats - Acerca del Proyecto",
+        "heading": "Acerca del Sistema",
+        "tableRows": 0
+      },
+      {
+        "path": "/dashboard.html",
+        "status": 200,
+        "title": "FútbolStats - Dashboard del Torneo",
+        "heading": "Dashboard del Torneo",
+        "tableRows": 0
+      }
+    ],
+    "pageErrors": [],
+    "responses": [
+      {
+        "url": "http://localhost:8080/",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/css/styles.css",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/js/common.js",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/api/partidos",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/index.html",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/css/styles.css",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/js/common.js",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/api/partidos",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/equipos.html",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/css/styles.css",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/js/common.js",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/api/partidos",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/api/equipos",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/registro.html",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/css/styles.css",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/js/common.js",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/api/partidos",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/api/equipos",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/api/partidos",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/tabla.html",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/css/styles.css",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/js/common.js",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/api/partidos",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/api/tabla-posiciones",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/acerca.html",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/css/styles.css",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/js/common.js",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/api/partidos",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/dashboard.html",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/css/styles.css",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/js/common.js",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/api/partidos",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/api/partidos",
+        "status": 200
+      },
+      {
+        "url": "http://localhost:8080/api/tabla-posiciones",
+        "status": 200
+      }
+    ],
+    "observations": [
+      "Siete vistas cargadas; filas de equipos=16, partidos=15, tabla=10.",
+      "Acentos mal almacenados en los datos existentes, visibles en la captura real.",
+      "CDN Tailwind disponible en esta revisión, con aviso de uso en producción."
+    ]
+  },
+  "postman": {
+    "agentStage3": "Runner no ejecutado por el agente; error del panel de entornos",
+    "userSubsequentReport": "El usuario informa pruebas satisfactorias posteriores desde su ordenador",
+    "testType": "Sin confirmar Send frente a Runner de 12 iteraciones",
+    "capturesAvailable": false,
+    "agentStage4": "La ventana accesible seguía mostrando un resultado de otra colección y error de entornos; no se usa como evidencia Liga1",
+    "runnerEvidenceStatus": "PENDIENTE de precisar y aportar/verificar evidencia"
+  },
+  "persistenceCommands": [
+    {
+      "command": "docker compose ... --profile sistema-completo down (sin -v)",
+      "exitCode": 0
+    },
+    {
+      "command": "docker compose ... up -d --wait --wait-timeout 240 (mínimo)",
+      "exitCode": 0
+    },
+    {
+      "command": "Test-Demo.ps1 -TimeoutSeconds 180",
+      "exitCode": 0
+    },
+    {
+      "command": "docker compose ... --profile sistema-completo up -d --wait --wait-timeout 240",
+      "exitCode": 0
+    },
+    {
+      "command": "Test-Demo.ps1 -FullSystem -TimeoutSeconds 180",
+      "exitCode": 0
+    },
+    {
+      "command": "Test-Audit.cjs --snapshot --compare ETAPA4-AUDITORIA.json",
+      "exitCode": 0
+    }
+  ],
+  "knownGaps": [
+    "Runner UI y capturas posteriores del usuario sin verificar",
+    "Acentos mal almacenados en volumen anterior; inicialización futura corregida sin alterar esos datos",
+    "No se probaron todos los formularios ni caída de réplica"
+  ],
+  "fileReview": {
+    "candidateCount": 48,
+    "generatedCredentialsMatchedInCandidates": [],
+    "envIgnored": true,
+    "binaryCaptures": [
+      "ETAPA4-EUREKA.png",
+      "ETAPA4-DASHBOARD.png"
+    ],
+    "noCommitsOrPushPerformed": true
+  }
+}

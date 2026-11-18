@@ -1,0 +1,66 @@
+{
+  "stage": 4,
+  "kind": "Evidencia visual aportada por el usuario; revisada por el agente",
+  "reviewedAt": "2026-11-18T03:01:23.640Z",
+  "provenance": {
+    "executor": "Usuario, ejecución manual del Runner de Postman",
+    "captureProvidedBy": "Usuario, archivo del workspace indicado en su mensaje",
+    "agentAction": "Inspección visual de la captura; no ejecutó este run",
+    "reportedRunTime": "La interfaz dice Ran today at 05:53:07 PM; fecha/huso del run no verificados independientemente"
+  },
+  "capture": {
+    "path": "evidencias/ETAPA4-POSTMAN-RESULTADO.png",
+    "sha256": "c322cd0aeb540b1a84196cfa0a87bf07fab320c0667e662eaa6bc52876b2b393",
+    "modifiedByAgent": false
+  },
+  "observed": {
+    "collection": "Liga1 - Taller LoadBalancer",
+    "folder": "02 - Serie de balanceo",
+    "request": "GET equipos - medir reparto",
+    "source": "Runner",
+    "environment": "none / No Environment",
+    "url": "http://localhost:8080/api/equipos",
+    "tests": {
+      "all": 53,
+      "passed": 53,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0
+    },
+    "visibleIterationLabels": [
+      10,
+      11,
+      12
+    ],
+    "visibleHttpCodes": [
+      200,
+      200,
+      200
+    ],
+    "finalChecksPassed": [
+      "Runner configurado con al menos 12 iteraciones",
+      "Todas las iteraciones contabilizadas",
+      "Cero respuestas inválidas en el run",
+      "Cero 429 en el run"
+    ],
+    "instanceCounts": {
+      "Servicio01-A": 6,
+      "Servicio01-B": 6
+    }
+  },
+  "discrepancy": {
+    "header": "Iterations: 1",
+    "conflictingEvidence": "Iteración 12 visible, 53 tests aprobados y conteos A=6/B=6",
+    "cause": "No determinada; no se atribuye a configuración, bug o versión sin evidencia",
+    "preserved": true
+  },
+  "limitations": [
+    "La captura de resultados no muestra la configuración inicial ni el delay de 100 ms",
+    "No se aportó captura separada de configuración ni segundo New Run; reinicio de conteos respaldado por validación y Newman anteriores",
+    "La causa del encabezado Iterations: 1 sigue sin determinarse"
+  ],
+  "conclusion": "Runner visual realizado manualmente por el usuario y corroborado por esta captura de Liga1; el bloqueo de los intentos previos del agente queda como histórico. Publicación en rama del taller autorizada expresamente, conservando las observaciones documentales.",
+  "publicationAuthorizedByUser": true,
+  "historicalReportsPreserved": true,
+  "accentRepairRepeated": false
+}

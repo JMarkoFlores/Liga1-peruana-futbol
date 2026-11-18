@@ -1,0 +1,148 @@
+{
+  "startedAt": "2026-11-17T22:11:18.175Z",
+  "backup": "demo-loadbalancer/docs/ETAPA4-ACENTOS-RESPALDO.json",
+  "sourceSha256": "14f61602a35249482e262cce640354f204fa9e032d2569395859f9eab156adbc",
+  "affectedFields": 8,
+  "changes": [
+    {
+      "table": "equipos",
+      "id": 8,
+      "column": "nombre",
+      "before": "CÃ©sar Vallejo",
+      "beforeUtf8Hex": "43c383c2a97361722056616c6c656a6f",
+      "after": "César Vallejo",
+      "afterUtf8Hex": "43c3a97361722056616c6c656a6f",
+      "sourceLine": 35
+    },
+    {
+      "table": "equipos",
+      "id": 9,
+      "column": "estadio",
+      "before": "UniÃ³n Tarma",
+      "beforeUtf8Hex": "556e69c383c2b36e205461726d61",
+      "after": "Unión Tarma",
+      "afterUtf8Hex": "556e69c3b36e205461726d61",
+      "sourceLine": 36
+    },
+    {
+      "table": "equipos",
+      "id": 12,
+      "column": "estadio",
+      "before": "HÃ©roes de San RamÃ³n",
+      "beforeUtf8Hex": "48c383c2a9726f65732064652053616e2052616dc383c2b36e",
+      "after": "Héroes de San Ramón",
+      "afterUtf8Hex": "48c3a9726f65732064652053616e2052616dc3b36e",
+      "sourceLine": 39
+    },
+    {
+      "table": "equipos",
+      "id": 13,
+      "column": "nombre",
+      "before": "AtlÃ©tico Grau",
+      "beforeUtf8Hex": "41746cc383c2a97469636f2047726175",
+      "after": "Atlético Grau",
+      "afterUtf8Hex": "41746cc3a97469636f2047726175",
+      "sourceLine": 40
+    },
+    {
+      "table": "equipos",
+      "id": 16,
+      "column": "nombre",
+      "before": "Alianza AtlÃ©tico",
+      "beforeUtf8Hex": "416c69616e7a612041746cc383c2a97469636f",
+      "after": "Alianza Atlético",
+      "afterUtf8Hex": "416c69616e7a612041746cc3a97469636f",
+      "sourceLine": 43
+    },
+    {
+      "table": "partidos",
+      "id": 4,
+      "column": "equipo_visitante",
+      "before": "CÃ©sar Vallejo",
+      "beforeUtf8Hex": "43c383c2a97361722056616c6c656a6f",
+      "after": "César Vallejo",
+      "afterUtf8Hex": "43c3a97361722056616c6c656a6f",
+      "sourceLine": 77
+    },
+    {
+      "table": "partidos",
+      "id": 9,
+      "column": "equipo_local",
+      "before": "CÃ©sar Vallejo",
+      "beforeUtf8Hex": "43c383c2a97361722056616c6c656a6f",
+      "after": "César Vallejo",
+      "afterUtf8Hex": "43c3a97361722056616c6c656a6f",
+      "sourceLine": 70
+    },
+    {
+      "table": "partidos",
+      "id": 14,
+      "column": "equipo_visitante",
+      "before": "CÃ©sar Vallejo",
+      "beforeUtf8Hex": "43c383c2a97361722056616c6c656a6f",
+      "after": "César Vallejo",
+      "afterUtf8Hex": "43c3a97361722056616c6c656a6f",
+      "sourceLine": 77
+    }
+  ],
+  "committed": true,
+  "countsBefore": {
+    "equipos": 16,
+    "partidos": 15
+  },
+  "updatedRowCounts": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "exactPlannedStateVerified": true,
+  "countsAfter": {
+    "equipos": 16,
+    "partidos": 15
+  },
+  "afterSha256": "c22c6c70609b17d678627da149ad6fe6f91bc095e938cd71093a506960623070",
+  "api": [
+    {
+      "url": "http://localhost:8080/api/equipos",
+      "status": 200,
+      "count": 16,
+      "instance": "Servicio01-A",
+      "affectedTextsVerified": true
+    },
+    {
+      "url": "http://localhost:8761/api/equipos",
+      "status": 200,
+      "count": 16,
+      "instance": "Servicio01-A",
+      "affectedTextsVerified": true
+    },
+    {
+      "url": "http://localhost:8764/api/equipos",
+      "status": 200,
+      "count": 16,
+      "instance": "Servicio01-B",
+      "affectedTextsVerified": true
+    },
+    {
+      "url": "http://localhost:8080/api/partidos",
+      "status": 200,
+      "count": 15,
+      "instance": null,
+      "affectedTextsVerified": true
+    },
+    {
+      "url": "http://localhost:8080/api/partidos-resumen",
+      "status": 200,
+      "count": 15,
+      "instance": null,
+      "affectedTextsVerified": true
+    }
+  ],
+  "exitCode": 0,
+  "completedAt": "2026-11-17T22:11:18.627Z"
+}

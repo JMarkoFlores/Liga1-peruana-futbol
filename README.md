@@ -2,6 +2,11 @@
 
 Sistema distribuido para la gestión deportiva y generación en tiempo real de estadísticas y tabla de posiciones de la **Liga 1 del Fútbol Peruano**, desarrollado con una arquitectura de microservicios usando **Spring Boot**, **Spring Cloud** y **MySQL**.
 
+El [taller Spring Cloud LoadBalancer](./demo-loadbalancer/README.md) añade dos
+réplicas de Servicio01, Docker aislado y una colección Postman. Consultar la
+[demostración y evidencias](./demo-loadbalancer/docs/DEMOSTRACION.md) y el
+[estado de auditoría y entrega](./demo-loadbalancer/docs/ESTADO.md).
+
 ---
 
 ## 🏛️ Arquitectura del Sistema

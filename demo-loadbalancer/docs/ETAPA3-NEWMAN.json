@@ -1,0 +1,886 @@
+{
+  "kind": "Resumen derivado de reportes JSON reales de Newman; no es ejecución en UI Postman",
+  "newman": "6.2.3",
+  "node": "24.15.0",
+  "baseUrl": "http://localhost:8080",
+  "delayMs": 100,
+  "postmanUI": {
+    "version": "12.34.1",
+    "collectionImported": true,
+    "environmentImported": false,
+    "runnerExecuted": false,
+    "blocker": "Importación del entorno fallida; Environments: Panel content couldn't load. Retry tampoco lo resolvió.",
+    "observationScope": "Observación del agente durante etapa 3; runnerExecuted=false no describe actividad posterior del usuario",
+    "subsequentUserReport": {
+      "source": "Solicitud del usuario al iniciar etapa 4",
+      "description": "Informa pruebas satisfactorias posteriores en Postman desde su ordenador",
+      "manualOrRunner": "Sin confirmar",
+      "runner12IterationCaptureVerified": false
+    }
+  },
+  "runs": [
+    {
+      "name": "balanceo-1",
+      "runMode": "balanceo",
+      "selection": "02 - Serie de balanceo",
+      "startedAt": "2026-11-17T21:14:26.232Z",
+      "completedAt": "2026-11-17T21:14:28.901Z",
+      "durationMs": 2669,
+      "iterations": 12,
+      "requests": 12,
+      "assertions": 53,
+      "assertionFailures": 0,
+      "failures": 0,
+      "statuses": {
+        "200": 12
+      },
+      "instanceCounts": {
+        "Servicio01-B": 6,
+        "Servicio01-A": 6
+      },
+      "records": [
+        {
+          "iteration": 1,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-B",
+          "assertions": [
+            {
+              "name": "HTTP 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Contrato JSON de equipos con datos",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "X-Instancia presente y esperada",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Sin 429",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "iteration": 2,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-A",
+          "assertions": [
+            {
+              "name": "HTTP 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Contrato JSON de equipos con datos",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "X-Instancia presente y esperada",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Sin 429",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "iteration": 3,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-B",
+          "assertions": [
+            {
+              "name": "HTTP 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Contrato JSON de equipos con datos",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "X-Instancia presente y esperada",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Sin 429",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "iteration": 4,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-A",
+          "assertions": [
+            {
+              "name": "HTTP 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Contrato JSON de equipos con datos",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "X-Instancia presente y esperada",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Sin 429",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "iteration": 5,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-B",
+          "assertions": [
+            {
+              "name": "HTTP 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Contrato JSON de equipos con datos",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "X-Instancia presente y esperada",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Sin 429",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "iteration": 6,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-A",
+          "assertions": [
+            {
+              "name": "HTTP 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Contrato JSON de equipos con datos",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "X-Instancia presente y esperada",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Sin 429",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "iteration": 7,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-B",
+          "assertions": [
+            {
+              "name": "HTTP 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Contrato JSON de equipos con datos",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "X-Instancia presente y esperada",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Sin 429",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "iteration": 8,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-A",
+          "assertions": [
+            {
+              "name": "HTTP 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Contrato JSON de equipos con datos",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "X-Instancia presente y esperada",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Sin 429",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "iteration": 9,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-B",
+          "assertions": [
+            {
+              "name": "HTTP 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Contrato JSON de equipos con datos",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "X-Instancia presente y esperada",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Sin 429",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "iteration": 10,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-A",
+          "assertions": [
+            {
+              "name": "HTTP 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Contrato JSON de equipos con datos",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "X-Instancia presente y esperada",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Sin 429",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "iteration": 11,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-B",
+          "assertions": [
+            {
+              "name": "HTTP 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Contrato JSON de equipos con datos",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "X-Instancia presente y esperada",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Sin 429",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "iteration": 12,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-A",
+          "assertions": [
+            {
+              "name": "HTTP 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Contrato JSON de equipos con datos",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "X-Instancia presente y esperada",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Sin 429",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Runner configurado con al menos 12 iteraciones",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Todas las iteraciones contabilizadas",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Cero respuestas inválidas en el run",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Cero 429 en el run",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Ambas réplicas observadas: {\"Servicio01-B\":6,\"Servicio01-A\":6}",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "filtro",
+      "runMode": "filtro",
+      "selection": "03 - Filtro habitual (aislado)",
+      "startedAt": "2026-11-17T21:19:04.514Z",
+      "completedAt": "2026-11-17T21:19:05.278Z",
+      "durationMs": 764,
+      "iterations": 1,
+      "requests": 3,
+      "assertions": 10,
+      "assertionFailures": 0,
+      "failures": 0,
+      "statuses": {
+        "200": 2,
+        "429": 1
+      },
+      "instanceCounts": {
+        "Servicio01-A": 1,
+        "Servicio01-B": 1
+      },
+      "records": [
+        {
+          "iteration": 1,
+          "request": "01 - Permitida 1",
+          "status": 200,
+          "instance": "Servicio01-A",
+          "assertions": [
+            {
+              "name": "Filtro: paso 1 devuelve 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Ejecutar los tres pasos, una sola iteración",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Respuesta permitida conserva datos e identidad",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "iteration": 1,
+          "request": "02 - Permitida 2",
+          "status": 200,
+          "instance": "Servicio01-B",
+          "assertions": [
+            {
+              "name": "Filtro: paso 2 devuelve 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Ejecutar los tres pasos, una sola iteración",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Respuesta permitida conserva datos e identidad",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "iteration": 1,
+          "request": "03 - Tercera bloqueada",
+          "status": 429,
+          "instance": null,
+          "assertions": [
+            {
+              "name": "Filtro: paso 3 devuelve 429",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Ejecutar los tres pasos, una sola iteración",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Error 429 conserva el contrato del filtro habitual",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Secuencia completa 200, 200, 429",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "balanceo-2",
+      "runMode": "balanceo",
+      "selection": "Colección completa; guardas omiten manual/filtro",
+      "startedAt": "2026-11-17T21:22:01.310Z",
+      "completedAt": "2026-11-17T21:22:12.024Z",
+      "durationMs": 10714,
+      "iterations": 12,
+      "requests": 12,
+      "assertions": 53,
+      "assertionFailures": 0,
+      "failures": 0,
+      "statuses": {
+        "200": 12
+      },
+      "instanceCounts": {
+        "Servicio01-A": 6,
+        "Servicio01-B": 6
+      },
+      "records": [
+        {
+          "iteration": 1,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-A",
+          "assertions": [
+            {
+              "name": "HTTP 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Contrato JSON de equipos con datos",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "X-Instancia presente y esperada",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Sin 429",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "iteration": 2,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-B",
+          "assertions": [
+            {
+              "name": "HTTP 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Contrato JSON de equipos con datos",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "X-Instancia presente y esperada",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Sin 429",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "iteration": 3,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-A",
+          "assertions": [
+            {
+              "name": "HTTP 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Contrato JSON de equipos con datos",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "X-Instancia presente y esperada",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Sin 429",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "iteration": 4,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-B",
+          "assertions": [
+            {
+              "name": "HTTP 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Contrato JSON de equipos con datos",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "X-Instancia presente y esperada",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Sin 429",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "iteration": 5,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-A",
+          "assertions": [
+            {
+              "name": "HTTP 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Contrato JSON de equipos con datos",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "X-Instancia presente y esperada",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Sin 429",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "iteration": 6,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-B",
+          "assertions": [
+            {
+              "name": "HTTP 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Contrato JSON de equipos con datos",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "X-Instancia presente y esperada",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Sin 429",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "iteration": 7,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-A",
+          "assertions": [
+            {
+              "name": "HTTP 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Contrato JSON de equipos con datos",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "X-Instancia presente y esperada",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Sin 429",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "iteration": 8,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-B",
+          "assertions": [
+            {
+              "name": "HTTP 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Contrato JSON de equipos con datos",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "X-Instancia presente y esperada",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Sin 429",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "iteration": 9,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-A",
+          "assertions": [
+            {
+              "name": "HTTP 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Contrato JSON de equipos con datos",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "X-Instancia presente y esperada",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Sin 429",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "iteration": 10,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-B",
+          "assertions": [
+            {
+              "name": "HTTP 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Contrato JSON de equipos con datos",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "X-Instancia presente y esperada",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Sin 429",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "iteration": 11,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-A",
+          "assertions": [
+            {
+              "name": "HTTP 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Contrato JSON de equipos con datos",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "X-Instancia presente y esperada",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Sin 429",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "iteration": 12,
+          "request": "GET equipos - medir reparto",
+          "status": 200,
+          "instance": "Servicio01-B",
+          "assertions": [
+            {
+              "name": "HTTP 200",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Contrato JSON de equipos con datos",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "X-Instancia presente y esperada",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Sin 429",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Runner configurado con al menos 12 iteraciones",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Todas las iteraciones contabilizadas",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Cero respuestas inválidas en el run",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Cero 429 en el run",
+              "passed": true,
+              "skipped": false
+            },
+            {
+              "name": "Ambas réplicas observadas: {\"Servicio01-A\":6,\"Servicio01-B\":6}",
+              "passed": true,
+              "skipped": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

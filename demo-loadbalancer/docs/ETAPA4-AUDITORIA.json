@@ -1,0 +1,703 @@
+{
+  "startedAt": "2026-11-17T21:41:14.515Z",
+  "mode": "CRUD-and-routes",
+  "baseUrl": "http://127.0.0.1:8080",
+  "marker": "AUDIT-0b642559-c78a-40c1-8b4e-8d1bdb54ce2f",
+  "checks": [
+    {
+      "name": "mysql: proyecto exclusivo",
+      "passed": true
+    },
+    {
+      "name": "mysql: sano",
+      "passed": true
+    },
+    {
+      "name": "Volumen exclusivo de demo",
+      "passed": true
+    },
+    {
+      "name": "gateway: proyecto exclusivo",
+      "passed": true
+    },
+    {
+      "name": "gateway: sano",
+      "passed": true
+    },
+    {
+      "name": "Gateway en modo taller",
+      "passed": true
+    },
+    {
+      "name": "Puerto HTTP pertenece al Gateway de demo",
+      "passed": true
+    },
+    {
+      "name": "servicio01-a: proyecto exclusivo",
+      "passed": true
+    },
+    {
+      "name": "servicio01-a: sano",
+      "passed": true
+    },
+    {
+      "name": "servicio01-b: proyecto exclusivo",
+      "passed": true
+    },
+    {
+      "name": "servicio01-b: sano",
+      "passed": true
+    },
+    {
+      "name": "servicio02: proyecto exclusivo",
+      "passed": true
+    },
+    {
+      "name": "servicio02: sano",
+      "passed": true
+    },
+    {
+      "name": "servicio03: proyecto exclusivo",
+      "passed": true
+    },
+    {
+      "name": "servicio03: sano",
+      "passed": true
+    },
+    {
+      "name": "GET /api/equipos: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "GET /api/equipos: identidad esperada",
+      "passed": true
+    },
+    {
+      "name": "GET /api/partidos: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Equipos con datos",
+      "passed": true
+    },
+    {
+      "name": "Partidos con datos",
+      "passed": true
+    },
+    {
+      "name": "Marca de inicialización SQL",
+      "passed": true
+    },
+    {
+      "name": "Conteos SQL coinciden con API",
+      "passed": true
+    },
+    {
+      "name": "POST /api/equipos: HTTP 201",
+      "passed": true
+    },
+    {
+      "name": "POST /api/equipos: identidad esperada",
+      "passed": true
+    },
+    {
+      "name": "Equipo Local: ID asignado",
+      "passed": true
+    },
+    {
+      "name": "Equipo Local: contrato guardado",
+      "passed": true
+    },
+    {
+      "name": "POST /api/equipos: HTTP 201",
+      "passed": true
+    },
+    {
+      "name": "POST /api/equipos: identidad esperada",
+      "passed": true
+    },
+    {
+      "name": "Equipo Visita: ID asignado",
+      "passed": true
+    },
+    {
+      "name": "Equipo Visita: contrato guardado",
+      "passed": true
+    },
+    {
+      "name": "PUT /api/equipos/17: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "PUT /api/equipos/17: identidad esperada",
+      "passed": true
+    },
+    {
+      "name": "GET /api/equipos/17: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "GET /api/equipos/17: identidad esperada",
+      "passed": true
+    },
+    {
+      "name": "Servicio01-A: actualización persistida compartida",
+      "passed": true
+    },
+    {
+      "name": "Servicio01-A: cabecera directa coincide con Eureka",
+      "passed": true
+    },
+    {
+      "name": "GET /api/equipos/17: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "GET /api/equipos/17: identidad esperada",
+      "passed": true
+    },
+    {
+      "name": "Servicio01-B: actualización persistida compartida",
+      "passed": true
+    },
+    {
+      "name": "Servicio01-B: cabecera directa coincide con Eureka",
+      "passed": true
+    },
+    {
+      "name": "POST /api/equipos: HTTP 400",
+      "passed": true
+    },
+    {
+      "name": "POST /api/equipos: identidad esperada",
+      "passed": true
+    },
+    {
+      "name": "Validación original de nombre vacío",
+      "passed": true
+    },
+    {
+      "name": "POST /api/partidos: HTTP 201",
+      "passed": true
+    },
+    {
+      "name": "Partido: ID asignado",
+      "passed": true
+    },
+    {
+      "name": "GET /api/partidos/16: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Partido: lectura por ID",
+      "passed": true
+    },
+    {
+      "name": "GET /api/partidos?jornada=9999: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Partido: filtro de jornada",
+      "passed": true
+    },
+    {
+      "name": "GET /api/partidos-resumen: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Servicio03: resumen ve escritura de Servicio02",
+      "passed": true
+    },
+    {
+      "name": "GET /api/tabla-posiciones: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Tabla: victoria temporal suma tres puntos",
+      "passed": true
+    },
+    {
+      "name": "Tabla: visitante temporal suma cero puntos",
+      "passed": true
+    },
+    {
+      "name": "PUT /api/partidos/16: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "GET /api/partidos/16: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Partido: actualización persistida",
+      "passed": true
+    },
+    {
+      "name": "GET /api/tabla-posiciones: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Tabla: empate temporal recalcula puntos",
+      "passed": true
+    },
+    {
+      "name": "GET /api/partidos/16: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Limpieza limitada al ID propio partidos/16",
+      "passed": true
+    },
+    {
+      "name": "DELETE /api/partidos/16: HTTP 204",
+      "passed": true
+    },
+    {
+      "name": "GET /api/partidos/16: HTTP 404",
+      "passed": true
+    },
+    {
+      "name": "GET /api/equipos/18: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "GET /api/equipos/18: identidad esperada",
+      "passed": true
+    },
+    {
+      "name": "Limpieza limitada al ID propio equipos/18",
+      "passed": true
+    },
+    {
+      "name": "DELETE /api/equipos/18: HTTP 204",
+      "passed": true
+    },
+    {
+      "name": "DELETE /api/equipos/18: identidad esperada",
+      "passed": true
+    },
+    {
+      "name": "GET /api/equipos/18: HTTP 404",
+      "passed": true
+    },
+    {
+      "name": "GET /api/equipos/18: identidad esperada",
+      "passed": true
+    },
+    {
+      "name": "GET /api/equipos/17: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "GET /api/equipos/17: identidad esperada",
+      "passed": true
+    },
+    {
+      "name": "Limpieza limitada al ID propio equipos/17",
+      "passed": true
+    },
+    {
+      "name": "DELETE /api/equipos/17: HTTP 204",
+      "passed": true
+    },
+    {
+      "name": "DELETE /api/equipos/17: identidad esperada",
+      "passed": true
+    },
+    {
+      "name": "GET /api/equipos/17: HTTP 404",
+      "passed": true
+    },
+    {
+      "name": "GET /api/equipos/17: identidad esperada",
+      "passed": true
+    },
+    {
+      "name": "GET /api/partidos-resumen: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Resumen sin partido temporal",
+      "passed": true
+    },
+    {
+      "name": "GET /api/tabla-posiciones: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Tabla sin equipos temporales",
+      "passed": true
+    },
+    {
+      "name": "GET /: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Contenido de /",
+      "passed": true
+    },
+    {
+      "name": "GET /index.html: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Contenido de /index.html",
+      "passed": true
+    },
+    {
+      "name": "GET /dashboard.html: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Contenido de /dashboard.html",
+      "passed": true
+    },
+    {
+      "name": "GET /equipos.html: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Contenido de /equipos.html",
+      "passed": true
+    },
+    {
+      "name": "GET /registro.html: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Contenido de /registro.html",
+      "passed": true
+    },
+    {
+      "name": "GET /tabla.html: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Contenido de /tabla.html",
+      "passed": true
+    },
+    {
+      "name": "GET /acerca.html: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Contenido de /acerca.html",
+      "passed": true
+    },
+    {
+      "name": "GET /css/styles.css: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Contenido de /css/styles.css",
+      "passed": true
+    },
+    {
+      "name": "GET /js/common.js: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Contenido de /js/common.js",
+      "passed": true
+    },
+    {
+      "name": "GET /api/equipos: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "GET /api/equipos: identidad esperada",
+      "passed": true
+    },
+    {
+      "name": "GET /api/partidos: HTTP 200",
+      "passed": true
+    },
+    {
+      "name": "Equipos con datos",
+      "passed": true
+    },
+    {
+      "name": "Partidos con datos",
+      "passed": true
+    },
+    {
+      "name": "Marca de inicialización SQL",
+      "passed": true
+    },
+    {
+      "name": "Conteos SQL coinciden con API",
+      "passed": true
+    },
+    {
+      "name": "Sólo cambiaron datos temporales, ahora eliminados",
+      "passed": true
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/api/equipos",
+      "status": 200,
+      "instance": "Servicio01-A"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/api/partidos",
+      "status": 200,
+      "instance": null
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:8080/api/equipos",
+      "status": 201,
+      "instance": "Servicio01-B"
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:8080/api/equipos",
+      "status": 201,
+      "instance": "Servicio01-A"
+    },
+    {
+      "method": "PUT",
+      "url": "http://127.0.0.1:8080/api/equipos/17",
+      "status": 200,
+      "instance": "Servicio01-B"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8761/api/equipos/17",
+      "status": 200,
+      "instance": "Servicio01-A"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8764/api/equipos/17",
+      "status": 200,
+      "instance": "Servicio01-B"
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:8080/api/equipos",
+      "status": 400,
+      "instance": "Servicio01-A"
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:8080/api/partidos",
+      "status": 201,
+      "instance": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/api/partidos/16",
+      "status": 200,
+      "instance": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/api/partidos?jornada=9999",
+      "status": 200,
+      "instance": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/api/partidos-resumen",
+      "status": 200,
+      "instance": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/api/tabla-posiciones",
+      "status": 200,
+      "instance": null
+    },
+    {
+      "method": "PUT",
+      "url": "http://127.0.0.1:8080/api/partidos/16",
+      "status": 200,
+      "instance": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/api/partidos/16",
+      "status": 200,
+      "instance": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/api/tabla-posiciones",
+      "status": 200,
+      "instance": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/api/partidos/16",
+      "status": 200,
+      "instance": null
+    },
+    {
+      "method": "DELETE",
+      "url": "http://127.0.0.1:8080/api/partidos/16",
+      "status": 204,
+      "instance": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/api/partidos/16",
+      "status": 404,
+      "instance": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/api/equipos/18",
+      "status": 200,
+      "instance": "Servicio01-B"
+    },
+    {
+      "method": "DELETE",
+      "url": "http://127.0.0.1:8080/api/equipos/18",
+      "status": 204,
+      "instance": "Servicio01-A"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/api/equipos/18",
+      "status": 404,
+      "instance": "Servicio01-B"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/api/equipos/17",
+      "status": 200,
+      "instance": "Servicio01-A"
+    },
+    {
+      "method": "DELETE",
+      "url": "http://127.0.0.1:8080/api/equipos/17",
+      "status": 204,
+      "instance": "Servicio01-B"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/api/equipos/17",
+      "status": 404,
+      "instance": "Servicio01-A"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/api/partidos-resumen",
+      "status": 200,
+      "instance": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/api/tabla-posiciones",
+      "status": 200,
+      "instance": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/",
+      "status": 200,
+      "instance": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/index.html",
+      "status": 200,
+      "instance": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/dashboard.html",
+      "status": 200,
+      "instance": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/equipos.html",
+      "status": 200,
+      "instance": "Servicio01-A"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/registro.html",
+      "status": 200,
+      "instance": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/tabla.html",
+      "status": 200,
+      "instance": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/acerca.html",
+      "status": 200,
+      "instance": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/css/styles.css",
+      "status": 200,
+      "instance": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/js/common.js",
+      "status": 200,
+      "instance": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/api/equipos",
+      "status": 200,
+      "instance": "Servicio01-B"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8080/api/partidos",
+      "status": 200,
+      "instance": null
+    }
+  ],
+  "cleanup": [
+    {
+      "kind": "partidos",
+      "id": 16,
+      "status": "deleted-and-404"
+    },
+    {
+      "kind": "equipos",
+      "id": 18,
+      "status": "deleted-and-404"
+    },
+    {
+      "kind": "equipos",
+      "id": 17,
+      "status": "deleted-and-404"
+    }
+  ],
+  "before": {
+    "teams": 16,
+    "matches": 15,
+    "teamsSha256": "672ff25bf351a01eac4c648c43de163ef1147013e26cff3ec0dd5791dd5c4d3f",
+    "matchesSha256": "a85e752cbbdef79531de90006c105a9bd1f2628b04af3e28a5ed248ac6aca209",
+    "duplicateMatchRows": 0,
+    "seedVersion": "liga1-v1"
+  },
+  "after": {
+    "teams": 16,
+    "matches": 15,
+    "teamsSha256": "672ff25bf351a01eac4c648c43de163ef1147013e26cff3ec0dd5791dd5c4d3f",
+    "matchesSha256": "a85e752cbbdef79531de90006c105a9bd1f2628b04af3e28a5ed248ac6aca209",
+    "duplicateMatchRows": 0,
+    "seedVersion": "liga1-v1"
+  },
+  "completedAt": "2026-11-17T21:41:19.515Z",
+  "exitCode": 0,
+  "passed": 107,
+  "failed": 0
+}

@@ -1,0 +1,395 @@
+{
+  "info": {
+    "_postman_id": "79e16555-11b0-4eab-b728-3f3157338925",
+    "name": "Liga1 - Taller LoadBalancer",
+    "description": "Elegir carpeta y runMode. Variables de colección predeterminadas permiten No Environment; un entorno activo puede sobrescribirlas. Scripts resuelven pm.variables.get. Contadores locales al run. Ver README.md.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01 - Lectura manual",
+      "description": "runMode=manual. Send individual para inspeccionar cuerpo/cabecera. No comparte conteos con balanceo.",
+      "item": [
+        {
+          "name": "GET equipos - lectura",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": "{{baseUrl}}/api/equipos",
+            "description": "Lectura manual; cambiar runMode a manual."
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "(() => {",
+                  "if (pm.variables.get(\"runMode\") !== \"manual\") {",
+                  "    console.warn(\"Lectura omitida: seleccione runMode=manual.\");",
+                  "    pm.execution.skipRequest();",
+                  "}",
+                  "})();"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "(() => {",
+                  "pm.test(\"HTTP 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Arreglo JSON de equipos con datos\", () => {",
+                  "    const teams = pm.response.json();",
+                  "    pm.expect(teams).to.be.an(\"array\").and.not.empty;",
+                  "    teams.forEach(team => pm.expect(team).to.include.all.keys(\"id\", \"nombre\", \"ciudad\", \"estadio\"));",
+                  "});",
+                  "pm.test(\"X-Instancia esperada\", () => pm.expect(pm.response.headers.get(\"X-Instancia\")).to.be.oneOf([",
+                  "    pm.variables.get(\"expectedInstanceA\"), pm.variables.get(\"expectedInstanceB\")",
+                  "]));",
+                  "})();"
+                ]
+              }
+            }
+          ],
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "02 - Serie de balanceo",
+      "description": "runMode=balanceo. Seleccionar sólo GET equipos - medir reparto en Runner. 12 iteraciones como mínimo, delay 100 ms. Contadores sólo locales al run, resumen al final incluso ante respuesta inválida.",
+      "item": [
+        {
+          "name": "GET equipos - medir reparto",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": "{{baseUrl}}/api/equipos",
+            "description": "Siempre GET {{baseUrl}}/api/equipos. El resumen final exige ambas réplicas sin exigir orden ni reparto exacto."
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "(() => {",
+                  "if (pm.variables.get(\"runMode\") !== \"balanceo\") {",
+                  "    console.warn(\"Serie omitida: seleccione runMode=balanceo.\");",
+                  "    pm.execution.skipRequest();",
+                  "} else if (Number(pm.info.iteration || 0) === 0) {",
+                  "    pm.variables.set(\"__liga1_balanceo\", JSON.stringify({",
+                  "        expected: [pm.variables.get(\"expectedInstanceA\"), pm.variables.get(\"expectedInstanceB\")],",
+                  "        planned: Number(pm.info.iterationCount || 1),",
+                  "        received: 0, valid: 0, failed: 0, tooManyRequests: 0,",
+                  "        counts: {}, unidentified: 0, records: []",
+                  "    }));",
+                  "}",
+                  "})();"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "(() => {",
+                  "// Registrar primero; ninguna aserción o error de JSON puede saltarse el agregado.",
+                  "const state = JSON.parse(pm.variables.get(\"__liga1_balanceo\"));",
+                  "const status = pm.response ? pm.response.code : 0;",
+                  "const identity = pm.response ? (pm.response.headers.get(\"X-Instancia\") || \"\").trim() : \"\";",
+                  "let data = null;",
+                  "let contractError = \"\";",
+                  "try {",
+                  "    data = pm.response.json();",
+                  "    if (!Array.isArray(data) || data.length === 0) throw new Error(\"Se exige arreglo JSON con equipos.\");",
+                  "    data.forEach((team, index) => {",
+                  "        if (!team || typeof team !== \"object\" || Array.isArray(team)) throw new Error(\"Equipo inválido: \" + index);",
+                  "        [\"id\", \"nombre\", \"ciudad\", \"estadio\"].forEach(key => {",
+                  "            if (!Object.prototype.hasOwnProperty.call(team, key)) throw new Error(\"Falta \" + key + \" en equipo \" + index);",
+                  "        });",
+                  "        if (!Number.isInteger(team.id) || team.id <= 0) throw new Error(\"id debe ser entero positivo.\");",
+                  "        if (typeof team.nombre !== \"string\" || !team.nombre.trim()) throw new Error(\"nombre debe ser string no vacío.\");",
+                  "        [\"ciudad\", \"estadio\"].forEach(key => {",
+                  "            if (team[key] !== null && typeof team[key] !== \"string\") throw new Error(key + \" debe ser string o null.\");",
+                  "        });",
+                  "    });",
+                  "} catch (error) {",
+                  "    contractError = error.message;",
+                  "}",
+                  "const knownIdentity = Boolean(identity) && state.expected.includes(identity);",
+                  "const problems = [];",
+                  "if (status !== 200) problems.push(\"HTTP_\" + status);",
+                  "if (contractError) problems.push(\"JSON: \" + contractError);",
+                  "if (!knownIdentity) problems.push(\"X-Instancia ausente o inesperada\");",
+                  "state.received += 1;",
+                  "state.tooManyRequests += status === 429 ? 1 : 0;",
+                  "if (knownIdentity) state.counts[identity] = (state.counts[identity] || 0) + 1;",
+                  "else state.unidentified += 1;",
+                  "if (problems.length) state.failed += 1;",
+                  "else state.valid += 1;",
+                  "state.records.push({ iteration: Number(pm.info.iteration || 0) + 1, status, instance: identity || null, errors: problems });",
+                  "pm.variables.set(\"__liga1_balanceo\", JSON.stringify(state));",
+                  "",
+                  "pm.test(\"HTTP 200\", () => pm.expect(status).to.equal(200));",
+                  "pm.test(\"Contrato JSON de equipos con datos\", () => pm.expect(contractError).to.equal(\"\"));",
+                  "pm.test(\"X-Instancia presente y esperada\", () => pm.expect(knownIdentity).to.equal(true));",
+                  "pm.test(\"Sin 429\", () => pm.expect(status).not.to.equal(429));",
+                  "",
+                  "// Se ejecuta también si la última respuesta fue 429/500, JSON inválido o sin cabecera.",
+                  "if (Number(pm.info.iteration || 0) === Number(pm.info.iterationCount || 1) - 1) {",
+                  "    console.log(\"RESUMEN_BALANCEO \" + JSON.stringify(state));",
+                  "    pm.test(\"Runner configurado con al menos 12 iteraciones\", () => pm.expect(state.planned).to.be.at.least(12));",
+                  "    pm.test(\"Todas las iteraciones contabilizadas\", () => {",
+                  "        pm.expect(state.received).to.equal(state.planned);",
+                  "        pm.expect(state.records.length).to.equal(state.planned);",
+                  "    });",
+                  "    pm.test(\"Cero respuestas inválidas en el run\", () => {",
+                  "        pm.expect(state.failed).to.equal(0);",
+                  "        pm.expect(state.valid).to.equal(state.planned);",
+                  "    });",
+                  "    pm.test(\"Cero 429 en el run\", () => pm.expect(state.tooManyRequests).to.equal(0));",
+                  "    pm.test(\"Ambas réplicas observadas: \" + JSON.stringify(state.counts), () => {",
+                  "        pm.expect(state.expected[0]).to.be.a(\"string\").and.not.empty;",
+                  "        pm.expect(state.expected[1]).to.be.a(\"string\").and.not.empty;",
+                  "        pm.expect(state.expected[0]).not.to.equal(state.expected[1]);",
+                  "        state.expected.forEach(id => pm.expect(state.counts[id] || 0, id).to.be.above(0));",
+                  "        pm.expect(state.unidentified).to.equal(0);",
+                  "    });",
+                  "}",
+                  "})();"
+                ]
+              }
+            }
+          ],
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "03 - Filtro habitual (aislado)",
+      "description": "runMode=filtro. Gateway sólo perfil docker, sin taller-loadbalancer, recién recreado. Seleccionar los tres pasos, Iterations=1, Delay=100 ms. No llamar a la API entre reinicio y esta carpeta. Restaurar después el taller.",
+      "item": [
+        {
+          "name": "01 - Permitida 1",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": "{{baseUrl}}/api/equipos",
+            "description": "Sólo modo habitual, historial limpio. Ejecutar la carpeta completa una iteración con runMode=filtro."
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "(() => {",
+                  "if (pm.variables.get(\"runMode\") !== \"filtro\") {",
+                  "    console.warn(\"Filtro omitido: seleccione runMode=filtro.\");",
+                  "    pm.execution.skipRequest();",
+                  "} else {",
+                  "    pm.variables.set(\"__liga1_filtro\", JSON.stringify({ statuses: [], identities: [] }));",
+                  "}",
+                  "})();"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "(() => {",
+                  "const state = JSON.parse(pm.variables.get(\"__liga1_filtro\") || '{\"statuses\":[],\"identities\":[]}');",
+                  "state.statuses.push(pm.response ? pm.response.code : 0);",
+                  "state.identities.push(pm.response ? pm.response.headers.get(\"X-Instancia\") || null : null);",
+                  "pm.variables.set(\"__liga1_filtro\", JSON.stringify(state));",
+                  "pm.test(\"Filtro: paso 1 devuelve 200\", () => pm.expect(pm.response ? pm.response.code : 0).to.equal(200));",
+                  "pm.test(\"Ejecutar los tres pasos, una sola iteración\", () => {",
+                  "    pm.expect(Number(pm.info.iteration || 0)).to.equal(0);",
+                  "    pm.expect(Number(pm.info.iterationCount || 1)).to.equal(1);",
+                  "    pm.expect(state.statuses.length).to.equal(1);",
+                  "});",
+                  "pm.test(\"Respuesta permitida conserva datos e identidad\", () => {",
+                  "    pm.expect(pm.response.json()).to.be.an(\"array\").and.not.empty;",
+                  "    pm.expect(pm.response.headers.get(\"X-Instancia\")).to.be.oneOf([",
+                  "        pm.variables.get(\"expectedInstanceA\"), pm.variables.get(\"expectedInstanceB\")",
+                  "    ]);",
+                  "});",
+                  "})();"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "02 - Permitida 2",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": "{{baseUrl}}/api/equipos",
+            "description": "Sólo modo habitual, historial limpio. Ejecutar la carpeta completa una iteración con runMode=filtro."
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "(() => {",
+                  "if (pm.variables.get(\"runMode\") !== \"filtro\") {",
+                  "    console.warn(\"Filtro omitido: seleccione runMode=filtro.\");",
+                  "    pm.execution.skipRequest();",
+                  "}",
+                  "})();"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "(() => {",
+                  "const state = JSON.parse(pm.variables.get(\"__liga1_filtro\") || '{\"statuses\":[],\"identities\":[]}');",
+                  "state.statuses.push(pm.response ? pm.response.code : 0);",
+                  "state.identities.push(pm.response ? pm.response.headers.get(\"X-Instancia\") || null : null);",
+                  "pm.variables.set(\"__liga1_filtro\", JSON.stringify(state));",
+                  "pm.test(\"Filtro: paso 2 devuelve 200\", () => pm.expect(pm.response ? pm.response.code : 0).to.equal(200));",
+                  "pm.test(\"Ejecutar los tres pasos, una sola iteración\", () => {",
+                  "    pm.expect(Number(pm.info.iteration || 0)).to.equal(0);",
+                  "    pm.expect(Number(pm.info.iterationCount || 1)).to.equal(1);",
+                  "    pm.expect(state.statuses.length).to.equal(2);",
+                  "});",
+                  "pm.test(\"Respuesta permitida conserva datos e identidad\", () => {",
+                  "    pm.expect(pm.response.json()).to.be.an(\"array\").and.not.empty;",
+                  "    pm.expect(pm.response.headers.get(\"X-Instancia\")).to.be.oneOf([",
+                  "        pm.variables.get(\"expectedInstanceA\"), pm.variables.get(\"expectedInstanceB\")",
+                  "    ]);",
+                  "});",
+                  "})();"
+                ]
+              }
+            }
+          ],
+          "response": []
+        },
+        {
+          "name": "03 - Tercera bloqueada",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": "{{baseUrl}}/api/equipos",
+            "description": "Sólo modo habitual, historial limpio. Ejecutar la carpeta completa una iteración con runMode=filtro."
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "(() => {",
+                  "if (pm.variables.get(\"runMode\") !== \"filtro\") {",
+                  "    console.warn(\"Filtro omitido: seleccione runMode=filtro.\");",
+                  "    pm.execution.skipRequest();",
+                  "}",
+                  "})();"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "(() => {",
+                  "const state = JSON.parse(pm.variables.get(\"__liga1_filtro\") || '{\"statuses\":[],\"identities\":[]}');",
+                  "state.statuses.push(pm.response ? pm.response.code : 0);",
+                  "state.identities.push(pm.response ? pm.response.headers.get(\"X-Instancia\") || null : null);",
+                  "pm.variables.set(\"__liga1_filtro\", JSON.stringify(state));",
+                  "pm.test(\"Filtro: paso 3 devuelve 429\", () => pm.expect(pm.response ? pm.response.code : 0).to.equal(429));",
+                  "pm.test(\"Ejecutar los tres pasos, una sola iteración\", () => {",
+                  "    pm.expect(Number(pm.info.iteration || 0)).to.equal(0);",
+                  "    pm.expect(Number(pm.info.iterationCount || 1)).to.equal(1);",
+                  "    pm.expect(state.statuses.length).to.equal(3);",
+                  "});",
+                  "pm.test(\"Error 429 conserva el contrato del filtro habitual\", () => {",
+                  "    const error = pm.response.json();",
+                  "    pm.expect(error.status).to.equal(429);",
+                  "    pm.expect(error.peticionesConsecutivas).to.equal(3);",
+                  "    pm.expect(error.limitePermitido).to.equal(2);",
+                  "    pm.expect(error.endpoint).to.equal(\"/api/equipos\");",
+                  "});",
+                  "console.log(\"RESUMEN_FILTRO \" + JSON.stringify(state));",
+                  "pm.test(\"Secuencia completa 200, 200, 429\", () => pm.expect(state.statuses).to.eql([200, 200, 429]));",
+                  "})();"
+                ]
+              }
+            }
+          ],
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "runMode",
+      "value": "balanceo",
+      "type": "string"
+    },
+    {
+      "key": "expectedInstanceA",
+      "value": "Servicio01-A",
+      "type": "string"
+    },
+    {
+      "key": "expectedInstanceB",
+      "value": "Servicio01-B",
+      "type": "string"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+# Sólo para la comprobación separada del filtro habitual; no altera la configuración base.
+services:
+  gateway:
+    environment:
+      SPRING_PROFILES_ACTIVE: docker

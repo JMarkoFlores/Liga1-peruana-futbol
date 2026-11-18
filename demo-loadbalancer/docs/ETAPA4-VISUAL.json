@@ -1,0 +1,184 @@
+{
+  "stage": 4,
+  "scope": "Sólo pendiente visual Postman; no Prompt 5",
+  "recordedAt": "2026-11-17T22:39:50.660Z",
+  "branch": "taller-loadbalancer",
+  "head": "4722fa7e98f0c40bd581ff1ed13c8ff5f240501d",
+  "provenance": {
+    "ui": "Observación directa del agente en Postman Desktop 12.34.1 mediante capturas nativas",
+    "http": "Newman 6.2.3 real, reportes JSON temporales resumidos",
+    "validation": "Validate-Postman.cjs, simulación local sin HTTP",
+    "userReport": "Pruebas satisfactorias comunicadas anteriormente por el usuario; falta precisar Send frente a Runner y verificar capturas"
+  },
+  "eureka": {
+    "http": 200,
+    "instances": [
+      {
+        "application": "SERVICIO01",
+        "id": "Servicio01-B",
+        "status": "UP",
+        "host": "servicio01-b",
+        "port": 8761
+      },
+      {
+        "application": "SERVICIO01",
+        "id": "Servicio01-A",
+        "status": "UP",
+        "host": "servicio01-a",
+        "port": 8761
+      }
+    ]
+  },
+  "collection": {
+    "name": "Liga1 - Taller LoadBalancer",
+    "id": "79e16555-11b0-4eab-b728-3f3157338925",
+    "requestCount": 5,
+    "variables": [
+      {
+        "key": "baseUrl",
+        "value": "http://localhost:8080",
+        "type": "string"
+      },
+      {
+        "key": "runMode",
+        "value": "balanceo",
+        "type": "string"
+      },
+      {
+        "key": "expectedInstanceA",
+        "value": "Servicio01-A",
+        "type": "string"
+      },
+      {
+        "key": "expectedInstanceB",
+        "value": "Servicio01-B",
+        "type": "string"
+      }
+    ],
+    "resolver": "pm.variables.get: variables locales/datos/entorno/colección/globales según precedencia Postman; el contador usa clave local exclusiva",
+    "environmentReadsReplaced": 13,
+    "environmentArtifactUnchanged": true,
+    "counters": "__liga1_balanceo local al run, reiniciado en iteración 0",
+    "sha256": "1b022946e73b76757e7f8ecae761a0d5fff241849442e60cd04b462eb9dae1cb"
+  },
+  "validator": {
+    "command": "node demo-loadbalancer/postman/Validate-Postman.cjs",
+    "exitCode": 0,
+    "simulatedScenarios": 15,
+    "failed": 0,
+    "newCases": [
+      "Sin entorno usa valores de colección",
+      "Entorno activo prevalece sobre colección"
+    ],
+    "officialSchema": "Postman Collection v2.1, JSON Schema draft-04: válido (Ajv)"
+  },
+  "newman": {
+    "version": "6.2.3",
+    "folder": "02 - Serie de balanceo",
+    "request": "GET equipos - medir reparto",
+    "runs": [
+      {
+        "mode": "coleccion",
+        "started": "2026-11-17T22:28:02.007Z",
+        "completed": "2026-11-17T22:28:04.631Z",
+        "iterations": 12,
+        "requests": 12,
+        "httpCodes": [
+          200
+        ],
+        "urls": [
+          "http://localhost:8080/api/equipos"
+        ],
+        "counts": {
+          "Servicio01-B": 6,
+          "Servicio01-A": 6
+        },
+        "assertions": {
+          "total": 53,
+          "pending": 0,
+          "failed": 0
+        },
+        "failures": 0,
+        "exitCode": 0,
+        "delayMs": 100
+      },
+      {
+        "mode": "entorno",
+        "started": "2026-11-17T22:28:19.923Z",
+        "completed": "2026-11-17T22:28:22.503Z",
+        "iterations": 12,
+        "requests": 12,
+        "httpCodes": [
+          200
+        ],
+        "urls": [
+          "http://127.0.0.1:8080/api/equipos"
+        ],
+        "counts": {
+          "Servicio01-B": 6,
+          "Servicio01-A": 6
+        },
+        "assertions": {
+          "total": 53,
+          "pending": 0,
+          "failed": 0
+        },
+        "failures": 0,
+        "exitCode": 0,
+        "delayMs": 100
+      }
+    ],
+    "environmentOverride": "La segunda serie usó el entorno entregado y --env-var baseUrl=http://127.0.0.1:8080 para comprobar prioridad sobre localhost de colección",
+    "visualRunnerEvidence": false
+  },
+  "ui": {
+    "runnerExecuted": false,
+    "configurationCompleted": false,
+    "resultsCaptured": false,
+    "countsCaptured": false,
+    "environmentError": "Panel content couldn't load.",
+    "collectionUpdateConfirmed": false,
+    "importObserved": "2 of 3 elements, 2 failed; dos filas de colección Liga1 fallidas y entorno pendiente",
+    "attempts": [
+      "Import de JSON actualizado y Replace de la colección Liga1 existente",
+      "Run desde carpeta 02",
+      "Run desde colección",
+      "Arrastrar carpeta y colección al Runner"
+    ],
+    "runnerObserved": "Run order vacío; Start run deshabilitado; selección de solicitud no completada",
+    "internalCause": "No determinada",
+    "screenshots": [
+      {
+        "path": "evidencias/ETAPA4-VISUAL-RUNNER-BLOQUEADO.png",
+        "kind": "Bloqueo, no configuración de 12/100 completada",
+        "sha256": "3b7b5abdb1eec7f3d036befd3f9d85a2bd3d870ed53085a5fb16f0b8678a68fc"
+      },
+      {
+        "path": "evidencias/ETAPA4-VISUAL-IMPORTACION-FALLIDA.png",
+        "kind": "Bloqueo de importación y Environments, no resultado de run",
+        "sha256": "b78295b46eccd9d022a65aad893d02daa609f228f53e60623e8b0f083801fa72"
+      }
+    ],
+    "otherCollectionsUsedAsEvidence": false,
+    "settingsDeleted": false,
+    "loggedOut": false,
+    "reinstalled": false
+  },
+  "pending": {
+    "firstManualStep": "Actualizar correctamente Liga1 con el JSON entregado, verificar cuatro variables; Run folder de 02 debe cargar GET equipos - medir reparto en Run order y habilitar Start run.",
+    "then": "No Environment, Functional/Local, 12 iteraciones, Add a delay 100 ms, None en datos, conservar respuestas, sin detener en primer fallo; guardar configuración, resultado y conteos del run real.",
+    "expected": "12 HTTP 200 en la misma URL /api/equipos, ambas identidades y 53 aserciones sin fallos; repetir New Run para comprobar reinicio.",
+    "missingSuccessScreenshots": [
+      "ETAPA4-POSTMAN-CONFIGURACION.png",
+      "ETAPA4-POSTMAN-RESULTADO.png",
+      "ETAPA4-POSTMAN-CONTEOS.png"
+    ]
+  },
+  "accentRepairRepeated": false,
+  "databaseWrites": false,
+  "javaChanges": false,
+  "javaBuildsRun": false,
+  "commits": false,
+  "push": false,
+  "readyForPrompt5": false
+}

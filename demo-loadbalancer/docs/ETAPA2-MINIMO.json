@@ -1,0 +1,108 @@
+{
+    "Date":  "2026-11-17T15:59:27.4613781-05:00",
+    "Mode":  "minimo",
+    "Eureka":  [
+                   {
+                       "Id":  "Servicio01-B",
+                       "Host":  "servicio01-b",
+                       "Port":  8761,
+                       "Status":  "UP"
+                   },
+                   {
+                       "Id":  "Servicio01-A",
+                       "Host":  "servicio01-a",
+                       "Port":  8761,
+                       "Status":  "UP"
+                   }
+               ],
+    "Direct":  [
+                   {
+                       "Instance":  "Servicio01-A",
+                       "Status":  200,
+                       "Teams":  16
+                   },
+                   {
+                       "Instance":  "Servicio01-B",
+                       "Status":  200,
+                       "Teams":  16
+                   }
+               ],
+    "Series":  [
+                   {
+                       "Iteration":  1,
+                       "Status":  200,
+                       "Instance":  "Servicio01-A",
+                       "Teams":  16
+                   },
+                   {
+                       "Iteration":  2,
+                       "Status":  200,
+                       "Instance":  "Servicio01-B",
+                       "Teams":  16
+                   },
+                   {
+                       "Iteration":  3,
+                       "Status":  200,
+                       "Instance":  "Servicio01-A",
+                       "Teams":  16
+                   },
+                   {
+                       "Iteration":  4,
+                       "Status":  200,
+                       "Instance":  "Servicio01-B",
+                       "Teams":  16
+                   },
+                   {
+                       "Iteration":  5,
+                       "Status":  200,
+                       "Instance":  "Servicio01-A",
+                       "Teams":  16
+                   },
+                   {
+                       "Iteration":  6,
+                       "Status":  200,
+                       "Instance":  "Servicio01-B",
+                       "Teams":  16
+                   },
+                   {
+                       "Iteration":  7,
+                       "Status":  200,
+                       "Instance":  "Servicio01-A",
+                       "Teams":  16
+                   },
+                   {
+                       "Iteration":  8,
+                       "Status":  200,
+                       "Instance":  "Servicio01-B",
+                       "Teams":  16
+                   },
+                   {
+                       "Iteration":  9,
+                       "Status":  200,
+                       "Instance":  "Servicio01-A",
+                       "Teams":  16
+                   },
+                   {
+                       "Iteration":  10,
+                       "Status":  200,
+                       "Instance":  "Servicio01-B",
+                       "Teams":  16
+                   },
+                   {
+                       "Iteration":  11,
+                       "Status":  200,
+                       "Instance":  "Servicio01-A",
+                       "Teams":  16
+                   },
+                   {
+                       "Iteration":  12,
+                       "Status":  200,
+                       "Instance":  "Servicio01-B",
+                       "Teams":  16
+                   }
+               ],
+    "DetailStatus":  200,
+    "FullSystem":  [
+
+                   ]
+}

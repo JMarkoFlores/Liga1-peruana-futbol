@@ -1,0 +1,167 @@
+{
+    "Date":  "2026-11-17T16:01:56.6880192-05:00",
+    "Mode":  "sistema-completo",
+    "Eureka":  [
+                   {
+                       "Id":  "Servicio01-B",
+                       "Host":  "servicio01-b",
+                       "Port":  8761,
+                       "Status":  "UP"
+                   },
+                   {
+                       "Id":  "Servicio01-A",
+                       "Host":  "servicio01-a",
+                       "Port":  8761,
+                       "Status":  "UP"
+                   }
+               ],
+    "Direct":  [
+                   {
+                       "Instance":  "Servicio01-A",
+                       "Status":  200,
+                       "Teams":  16
+                   },
+                   {
+                       "Instance":  "Servicio01-B",
+                       "Status":  200,
+                       "Teams":  16
+                   }
+               ],
+    "Series":  [
+                   {
+                       "Iteration":  1,
+                       "Status":  200,
+                       "Instance":  "Servicio01-A",
+                       "Teams":  16
+                   },
+                   {
+                       "Iteration":  2,
+                       "Status":  200,
+                       "Instance":  "Servicio01-B",
+                       "Teams":  16
+                   },
+                   {
+                       "Iteration":  3,
+                       "Status":  200,
+                       "Instance":  "Servicio01-A",
+                       "Teams":  16
+                   },
+                   {
+                       "Iteration":  4,
+                       "Status":  200,
+                       "Instance":  "Servicio01-B",
+                       "Teams":  16
+                   },
+                   {
+                       "Iteration":  5,
+                       "Status":  200,
+                       "Instance":  "Servicio01-A",
+                       "Teams":  16
+                   },
+                   {
+                       "Iteration":  6,
+                       "Status":  200,
+                       "Instance":  "Servicio01-B",
+                       "Teams":  16
+                   },
+                   {
+                       "Iteration":  7,
+                       "Status":  200,
+                       "Instance":  "Servicio01-A",
+                       "Teams":  16
+                   },
+                   {
+                       "Iteration":  8,
+                       "Status":  200,
+                       "Instance":  "Servicio01-B",
+                       "Teams":  16
+                   },
+                   {
+                       "Iteration":  9,
+                       "Status":  200,
+                       "Instance":  "Servicio01-A",
+                       "Teams":  16
+                   },
+                   {
+                       "Iteration":  10,
+                       "Status":  200,
+                       "Instance":  "Servicio01-B",
+                       "Teams":  16
+                   },
+                   {
+                       "Iteration":  11,
+                       "Status":  200,
+                       "Instance":  "Servicio01-A",
+                       "Teams":  16
+                   },
+                   {
+                       "Iteration":  12,
+                       "Status":  200,
+                       "Instance":  "Servicio01-B",
+                       "Teams":  16
+                   }
+               ],
+    "DetailStatus":  200,
+    "FullSystem":  [
+                       {
+                           "Path":  "/api/partidos",
+                           "Status":  200,
+                           "Items":  15
+                       },
+                       {
+                           "Path":  "/api/tabla-posiciones",
+                           "Status":  200,
+                           "Items":  10
+                       },
+                       {
+                           "Path":  "/api/partidos-resumen",
+                           "Status":  200,
+                           "Items":  15
+                       },
+                       {
+                           "Path":  "/",
+                           "Status":  200,
+                           "Items":  null
+                       },
+                       {
+                           "Path":  "/index.html",
+                           "Status":  200,
+                           "Items":  null
+                       },
+                       {
+                           "Path":  "/dashboard.html",
+                           "Status":  200,
+                           "Items":  null
+                       },
+                       {
+                           "Path":  "/equipos.html",
+                           "Status":  200,
+                           "Items":  null
+                       },
+                       {
+                           "Path":  "/registro.html",
+                           "Status":  200,
+                           "Items":  null
+                       },
+                       {
+                           "Path":  "/tabla.html",
+                           "Status":  200,
+                           "Items":  null
+                       },
+                       {
+                           "Path":  "/acerca.html",
+                           "Status":  200,
+                           "Items":  null
+                       },
+                       {
+                           "Path":  "/css/styles.css",
+                           "Status":  200,
+                           "Items":  null
+                       },
+                       {
+                           "Path":  "/js/common.js",
+                           "Status":  200,
+                           "Items":  null
+                       }
+                   ]
+}
